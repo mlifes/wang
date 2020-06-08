@@ -1,0 +1,11 @@
+import KtApp from './layout/kt-app.component.vue'
+import KtHeader from './layout/header/kt-header.component.vue'
+import KtContent from './layout/content/kt-content.component.vue'
+import KtFooter from './layout/footer/kt-footer.component.vue'
+
+export default {
+  'kt-app': KtApp,
+  'kt-header': KtHeader,
+  'kt-content': KtContent,
+  'kt-footer': KtFooter
+}

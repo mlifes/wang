@@ -1,0 +1,37 @@
+/**
+  * @author wang.kt
+  * @date 2020-06-08 10:12:06
+  * @version 1.0
+  * @description 功能描述
+  * ----------------------------------------------------
+  * date          author         desc
+  * 2020-06-08 10:12:06      wang.kt      初始化文档
+  * ----------------------------------------------------
+  * */
+#kt-app {
+  position: relative;
+  height: 100%;
+
+  #kt-header {
+    height: 48px;
+  }
+
+  #kt-content {
+
+    &.has-header.has-footer {
+      height: calc(100% - 48px - 64px);
+    }
+
+    &.has-header {
+      height: calc(100% - 48px);
+    }
+
+    &.has-footer {
+      height: calc(100% - 64px);
+    }
+  }
+
+  #kt-footer {
+    height: 64px;
+  }
+}
