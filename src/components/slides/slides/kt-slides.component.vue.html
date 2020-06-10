@@ -1,0 +1,19 @@
+<!--
+    @author wang.kt
+    @date 2020-06-08 21:04:47
+    @version 1.0
+    @description 功能描述 滑动框
+    ----------------------------------------------------
+    date          author      desc
+    2020-06-08 21:04:47      wang.kt   初始化文档
+    ----------------------------------------------------
+-->
+<div class="kt-slides">
+    <div class="container" :style="style" @touchstart="touchstart" @touchend="touchend" @touchmove="touchmove">
+        <slot></slot>
+    </div>
+    <div class="page" :style="pageStyle">
+        <div class="dot" :class="{ active: index === currentIndex }" v-for='(item,index) of pages'
+            @click="slideTo(index,0)"></div>
+    </div>
+</div>

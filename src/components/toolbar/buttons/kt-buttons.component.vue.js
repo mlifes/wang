@@ -1,13 +1,13 @@
 /**
-  * @author your name
-  * @date 2020-06-08 09:59:15
+  * @author wang.kt
+  * @date 2020-06-10 08:39:00
   * @version 1.0
   * @description 功能描述
   * ----------------------------------------------------
   * date          author         desc
-  * 2020-06-08 09:59:15      your name      初始化文档
+  * 2020-06-10 08:39:00 wang.kt      初始化文档
   * ----------------------------------------------------
   * */
-#kt-content {
-  
+export default {
+  name: 'kt-buttons'
 }

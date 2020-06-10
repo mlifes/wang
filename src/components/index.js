@@ -3,9 +3,14 @@ import KtHeader from './layout/header/kt-header.component.vue'
 import KtContent from './layout/content/kt-content.component.vue'
 import KtFooter from './layout/footer/kt-footer.component.vue'
 
+import KtSlides from './slides/slides/kt-slides.component.vue'
+import KtSlide from './slides/slide/kt-slide.component.vue'
+
 export default {
   'kt-app': KtApp,
   'kt-header': KtHeader,
   'kt-content': KtContent,
-  'kt-footer': KtFooter
+  'kt-footer': KtFooter,
+  'kt-slides': KtSlides,
+  'kt-slide': KtSlide
 }

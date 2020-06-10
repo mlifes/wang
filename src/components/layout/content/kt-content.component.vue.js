@@ -16,11 +16,23 @@ export default {
       myClass: ''
     }
   },
+  props: {
+    scroll: {
+      default: function () {
+        return ''
+      }
+    }
+  },
   created() {
 
   },
   mounted() {
-    //初始化resizecontent高度
+    if (this.scroll != '') {
+      this.$el.style = 'overflow-' + this.scroll + ':scroll;'
+    } else {
+      this.$el.style = 'overflow: hidden;'
+    }
+    // 初始化resizecontent高度
     this.resizeHeight();
   },
   methods: {
