@@ -9,5 +9,10 @@
  * ----------------------------------------------------
  * */
 export default {
-  name: 'tabs'
+  name: 'tabs',
+  methods: {
+    go: function () {
+      this.$router.go(1)
+    }
+  }
 }

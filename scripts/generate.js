@@ -26,14 +26,14 @@ const generateFile = (path, data) => {
 }
 
 // 公共组件目录src/base,全局注册组件目录src/base/global,页面组件目录src/components
-log('请输入要生成的类型及文件名,例如:views@pathname 表示生成页面,其它诸如:component@pathname ,directive@pathname,filter@pathname')
+log('请输入要生成的类型及文件名,例如:views@pathname 表示生成页面,其它诸如:component@pathname ,directive@pathname, plugin@pathname,filter@pathname')
 // _ ? log('请输入要生成的组件名称、如需生成全局组件，请加 global/ 前缀') : log('请输入要生成的页面组件名称、会生成在 components/目录下')
 let name = ''
 process.stdin.on('data', async chunk => {
   const commands = String(chunk).trim().toString()
   const args = commands.split('@')
   // 获取类型，是view，component,还是其它
-  let type = args[0]
+  const type = args[0]
   // 文件名称
   const pathname = args[1]
   // 需要生成的文件组
@@ -85,6 +85,15 @@ process.stdin.on('data', async chunk => {
       suffix: '.directive.js',
       product: vueTemplate.directive
     }]
+  } else if (type === 'plugin' || type === 'p') {
+    prePath = 'plugins/' + prePath
+    products = [{
+      suffix: '.plugin.js',
+      product: vueTemplate.plugin_index
+    }, {
+      suffix: '.plugin.install.js',
+      product: vueTemplate.plugin_install
+    }]
   } else if (type === 'filter' || type === 'f') {
     prePath = 'filters/' + prePath
     products = [{
@@ -92,7 +101,7 @@ process.stdin.on('data', async chunk => {
       product: vueTemplate.filter
     }]
   } else {
-    errorLog(`${type} 类型输入错误，请重新输入,当前仅支持 views(v)、component(c)、directive(d)、filter(f)`)
+    errorLog(`${type} 类型输入错误，请重新输入,当前仅支持 views(v)、component(c)、directive(d)、plugin(p)、filter(f)`)
     return
   }
 

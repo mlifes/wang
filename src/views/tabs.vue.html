@@ -8,21 +8,23 @@
     2020-06-05 12:11:37      your name   初始化文档
     ----------------------------------------------------
 -->
-<kt-app>
+<kt-app class="tabs">
     <kt-header> JUST A HEADER</kt-header>
     <kt-content>
         <kt-slides style="height: 100%;width: 100%;">
             <kt-slide>
-                <a href="home">JUST GO HOME</a>
+                <a href="#/home">JUST GO HOME</a>
+
+                <a @click="go()">JHHHE</a>
             </kt-slide>
             <kt-slide>
-                <a href="work">JUST GO WORK</a>
+                <a href="#/work">JUST GO WORK</a>
             </kt-slide>
             <kt-slide>
-                <a href="unvi">JUST GO UNVI</a>
+                <a href="#/unvi">JUST GO UNVI</a>
             </kt-slide>
             <kt-slide>
-                <a href="person">JUST GO PERSON</a>
+                <a href="#/person">JUST GO PERSON</a>
             </kt-slide>
         </kt-slides>
     </kt-content>

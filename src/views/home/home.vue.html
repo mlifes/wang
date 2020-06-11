@@ -8,9 +8,15 @@
     2020-06-08 20:48:23      wang.kt   初始化文档
     ----------------------------------------------------
 -->
-<kt-app class="home">
+<kt-app class="home" v-kt-touch-back>
     <kt-header>
-        落定侯
+        <kt-toolbar>
+            <kt-back slot="start">Back</kt-back>
+            <p>落定侯</p>
+            <p slot="end">
+                <a href="person">Search</a>
+            </p>
+        </kt-toolbar>
     </kt-header>
     <kt-content scroll="x">
         <p>作品大纲 — 落定侯</p>

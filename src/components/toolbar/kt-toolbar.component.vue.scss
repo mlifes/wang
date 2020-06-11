@@ -8,4 +8,30 @@
   * 2020-06-10 08:38:02      wang.kt      初始化文档
   * ----------------------------------------------------
   * */
-.kt-toolbar {}
+.kt-toolbar {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  
+  .start{
+    position: absolute;
+    height: 100%;
+    width: 20vw;
+    top: 0;
+    left: 0;
+  }
+  .default{
+    position: absolute;
+    height: 100%;
+    width: 60vw;
+    top: 0;
+    left: 20vw;
+  }
+  .end{
+    position: absolute;
+    height: 100%;
+    width: 20vw;
+    top: 0;
+    right: 0;
+  }
+}

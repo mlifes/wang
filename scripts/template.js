@@ -129,6 +129,40 @@ export default {
 }
 `
   },
+  plugin_index: name => {
+    return `/**
+  * @author ${author}
+  * @date ${now()}
+  * @version 1.0
+  * @description ${name}插件
+  * ----------------------------------------------------
+  * date          author         desc
+  * ${now()} ${author}      初始化文档
+  * ----------------------------------------------------
+  * */
+import { install } from './${name}.plugin.install'
+
+export default class ${name} {
+
+}
+`
+  },
+  plugin_install: name => {
+    return `/**
+  * @author ${author}
+  * @date ${now()}
+  * @version 1.0
+  * @description ${name}插件
+  * ----------------------------------------------------
+  * date          author         desc
+  * ${now()} ${author}      初始化文档
+  * ----------------------------------------------------
+  * */
+export function install(Vue, options) {
+
+}
+`
+  },
   filter: name => {
     return `/**
  * @author ${author}

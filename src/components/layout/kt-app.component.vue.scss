@@ -8,16 +8,16 @@
   * 2020-06-08 10:12:06      wang.kt      初始化文档
   * ----------------------------------------------------
   * */
-#kt-app {
+.kt-app {
   position: relative;
   height: 100%;
 
-  #kt-header {
+  .kt-header {
     height: 48px;
     line-height: 48px;
   }
 
-  #kt-content {
+  .kt-content {
 
     &.has-header.has-footer {
       height: calc(100% - 48px - 64px);
@@ -32,7 +32,7 @@
     }
   }
 
-  #kt-footer {
+  .kt-footer {
     height: 64px;
     line-height: 64px;
   }

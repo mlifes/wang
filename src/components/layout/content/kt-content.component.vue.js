@@ -37,8 +37,8 @@ export default {
   },
   methods: {
     resizeHeight: function () {
-      const header = document.getElementById("kt-header");
-      const footer = document.getElementById("kt-footer");
+      const header = document.getElementsByClassName("kt-header")[0];
+      const footer = document.getElementsByClassName("kt-footer")[0];
       if (header) {
         this.myClass += 'has-header ';
       }

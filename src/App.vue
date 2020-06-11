@@ -1,17 +1,20 @@
 <template>
   <div id="app">
     <transition
-      name="slide-fade"
-      v-on:before-enter="beforeEnter"
-      v-on:enter="enter"
-      v-on:after-enter="afterEnter"
-      v-on:enter-cancelled="enterCancelled"
-      v-on:before-leave="beforeLeave"
-      v-on:leave="leave"
-      v-on:after-leave="afterLeave"
-      v-on:leave-cancelled="leaveCancelled"
+      name="slide-left"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @enter-cancelled="enterCancelled"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+      @leave-cancelled="leaveCancelled"
+      mode="in-out"
     >
-      <router-view />
+      <keep-alive>
+        <router-view />
+      </keep-alive>
     </transition>
   </div>
 </template>
@@ -58,8 +61,11 @@ export default {
 </script>
 
 <style lang="scss">
-body {
+* {
   margin: 0;
+  padding: 0;
+}
+body {
   overflow: hidden;
 }
 #app {
@@ -71,42 +77,30 @@ body {
   height: 100vh;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  will-change: transform;
+  transition: all 0.5s ease-in-out;
 }
-// .slide-fade {
-//   position: fixed;
-//   left: 0;
-//   right: 0;
-//   width: 100%;
-//   background-color: white;
-// }
-// .slide-fade-enter,
-// .slide-fade-leave-to {
-//   left: 0;
-//   top: 0;
-//   right: 0;
-//   position: absolute;
-//   // transform: translateX(-500px) scale(1);
-//   opacity: 1;
-// }
-// .slide-fade-enter-active {
-//   background-color: white;
-//   // transition: all 9s ease;
-// }
-// .slide-fade-leave-active {
-//   transition: all 1s ease;
-//   background-color: white;
-//   // transform: translateX(500px) scale(1);
-//   z-index: 100;
-// }
+.slide-right-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.slide-right-leave-active {
+  opacity: 0;
+  // transform: translateX(100%);
+}
+
+.slide-left-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.slide-left-leave-active {
+  opacity: 0;
+  // transform: translateX(-100%);
+}
 </style>
