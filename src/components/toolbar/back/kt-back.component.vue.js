@@ -12,7 +12,7 @@ export default {
   name: 'kt-back',
   methods: {
     back: function () {
-      this.$router.back()
+      this.$router.goBack()
     }
   }
 }

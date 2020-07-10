@@ -1,69 +1,104 @@
 <template>
   <div id="app">
-    <transition
-      name="slide-left"
-      @before-enter="beforeEnter"
-      @enter="enter"
-      @after-enter="afterEnter"
-      @enter-cancelled="enterCancelled"
-      @before-leave="beforeLeave"
-      @leave="leave"
-      @after-leave="afterLeave"
-      @leave-cancelled="leaveCancelled"
-      mode="in-out"
-    >
+    <kt-transition>
       <keep-alive>
         <router-view />
       </keep-alive>
-    </transition>
+    </kt-transition>
   </div>
 </template>
 
 <script>
-/* eslint-disable */
 export default {
-  name: "app",
-  methods: {
-    beforeEnter: function(el) {
-      console.log(el);
-      console.log(1);
-    },
-    enter: function(el) {
-      console.log(el);
-      console.log(2);
-    },
-    afterEnter: function(el) {
-      console.log(el);
-      console.log(3);
-    },
-    enterCancelled: function(el) {
-      console.log(el);
-      console.log(4);
-    },
-    beforeLeave: function(el) {
-      console.log(el);
-      console.log(5);
-    },
-    leave: function(el) {
-      console.log(el);
-      console.log(6);
-    },
-    afterLeave: function(el) {
-      console.log(el);
-      console.log(7);
-    },
-    leaveCancelled: function(el) {
-      console.log(el);
-      console.log(8);
-    }
-  }
-};
+  name: 'app'
+}
 </script>
 
 <style lang="scss">
 * {
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
   margin: 0;
   padding: 0;
+  vertical-align: baseline;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+img {
+  border: 0 none;
+  vertical-align: top;
+}
+i,
+em {
+  font-style: normal;
+}
+ol,
+ul {
+  list-style: none;
+}
+input,
+select,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-family: inherit;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+a {
+  text-decoration: none;
+  color: #666;
+}
+body {
+  margin: 0 auto;
+  min-width: 320px;
+  max-width: 640px;
+  height: 100%;
+  font-size: 14px;
+  font-family: -apple-system, Helvetica, sans-serif;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
+}
+input[type="text"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 body {
   overflow: hidden;
@@ -75,32 +110,5 @@ body {
   text-align: center;
   color: #2c3e50;
   height: 100vh;
-}
-
-.slide-right-enter-active,
-.slide-right-leave-active,
-.slide-left-enter-active,
-.slide-left-leave-active {
-  will-change: transform;
-  transition: all 0.5s ease-in-out;
-}
-.slide-right-enter {
-  opacity: 0;
-  transform: translateX(-100%);
-}
-
-.slide-right-leave-active {
-  opacity: 0;
-  // transform: translateX(100%);
-}
-
-.slide-left-enter {
-  opacity: 0;
-  transform: translateX(100%);
-}
-
-.slide-left-leave-active {
-  opacity: 0;
-  // transform: translateX(-100%);
 }
 </style>

@@ -44,7 +44,8 @@ process.stdin.on('data', async chunk => {
   if (pathname.includes('/')) {
     const inputArr = pathname.split('/')
     name = inputArr[inputArr.length - 1]
-    prePath = pathname.split('/' + name)[0]
+    inputArr.splice(inputArr.length - 1)
+    prePath = inputArr.join('/')
   } else {
     name = pathname
   }

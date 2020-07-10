@@ -9,5 +9,87 @@
   * ----------------------------------------------------
   * */
 export default {
-  name: 'kt-tabs'
+  name: 'kt-tabs',
+  data () {
+    return {
+      signSize: '',
+      signTransform: '',
+      signBar: '',
+      signOpts: {
+        isShow: true,
+        color: '#009688',
+        height: '3',
+        ratio: 1,
+        isTop: true
+      },
+      cw: '',
+      len: ''
+    }
+  },
+  props: {
+    opts: {
+      default: function () {
+        return {}
+      }
+    }
+  },
+  computed: {
+    signStyle: function () {
+      return this.signSize + this.signTransform + this.signBar
+    }
+  },
+  mounted () {
+    this.init()
+  },
+  methods: {
+    // 初始化参数
+    init: function () {
+      this.initOpts()
+
+      this.initSignBarStyle()
+
+      for (let i = 0; i < this.len; i++) {
+        this.$children[i].style = 'width:' + this.cw + 'px;'
+      }
+    },
+
+    // 初始化配置项
+    initOpts: function () {
+      this.len = this.$children.length
+
+      this.cw = this.$el.clientWidth / this.len
+
+      if (this.opts) {
+        for (const key in this.opts) {
+          this.signOpts[key] = this.opts[key]
+        }
+      }
+    },
+    initSignBarStyle: function () {
+      if (!this.signOpts.isShow) {
+        return
+      }
+
+      const ratio = parseInt((1 - this.signOpts.ratio) / 2 * 100)
+
+      this.signBar = 'background: linear-gradient(to right,white ' + ratio + '%,' + this.signOpts.color + ' ' + ratio + '%,' + this.signOpts.color + ' ' + (100 - ratio) + '%,white ' + (100 - ratio) + '% );'
+
+      let style = 'height:' + this.signOpts.height + 'px;width:' + this.cw + 'px;'
+
+      style += this.signOpts.isTop ? 'top:0;' : 'bottom:0;'
+
+      this.signSize = style
+    },
+    // 绑定动画效果,此处对应sliders中的方法
+    bindTransformAnim: function (data) {
+      if (!this.signOpts.isShow) {
+        return
+      }
+      let transform = 'transform:translateX(' + -1 * data.dis * this.cw + 'px);'
+      if (data.style) {
+        transform += data.style
+      }
+      this.signTransform = transform
+    }
+  }
 }

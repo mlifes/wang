@@ -9,26 +9,29 @@
     ----------------------------------------------------
 -->
 <kt-app class="tabs">
-    <kt-header> JUST A HEADER</kt-header>
+    <!-- <kt-header> JUST A HEADER</kt-header> -->
     <kt-content>
-        <kt-slides style="height: 100%;width: 100%;">
+        <kt-slides style="height: 100%;width: 100%;" ref="ktSlides" @onSlidingTransformAnim="onSlidingTransformAnim">
             <kt-slide>
-                <a href="#/home">JUST GO HOME</a>
-
-                <a @click="go()">JHHHE</a>
+                <kt-home></kt-home>
             </kt-slide>
             <kt-slide>
-                <a href="#/work">JUST GO WORK</a>
+                <kt-work></kt-work>
             </kt-slide>
             <kt-slide>
-                <a href="#/unvi">JUST GO UNVI</a>
+                <kt-unvi></kt-unvi>
             </kt-slide>
             <kt-slide>
-                <a href="#/person">JUST GO PERSON</a>
+                <kt-person></kt-person>
             </kt-slide>
         </kt-slides>
     </kt-content>
     <kt-footer>
-        JUST A FOOTER
+        <kt-tabs ref="ktTabs" :opts="tabsOpts">
+            <kt-tab @click.native="onTabClick(0)">HOME</kt-tab>
+            <kt-tab @click.native="onTabClick(1)">WORK</kt-tab>
+            <kt-tab @click.native="onTabClick(2)">UNVI</kt-tab>
+            <kt-tab @click.native="onTabClick(3)">PERSON</kt-tab>
+        </kt-tabs>
     </kt-footer>
 </kt-app>

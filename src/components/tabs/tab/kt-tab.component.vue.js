@@ -9,5 +9,14 @@
   * ----------------------------------------------------
   * */
 export default {
-  name: 'kt-tab'
+  name: 'kt-tab',
+  data () {
+    return {
+      style: ''
+    }
+  },
+  mounted () {
+  },
+  methods: {
+  }
 }

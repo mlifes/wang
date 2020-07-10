@@ -51,7 +51,8 @@ module.exports = {
 </div>`
   },
   scss: name => {
-    return `/**
+    return `@charset "UTF-8";
+/**
   * @author ${author}
   * @date ${now()}
   * @version 1.0

@@ -8,10 +8,9 @@
  * 2020-06-08 21:04:47 wang.kt      初始化文档
  * ----------------------------------------------------
  * */
-/* eslint-disable */
 export default {
   name: 'kt-slides',
-  data() {
+  data () {
     return {
       baseStyle: '',
       transformStyle: '',
@@ -19,9 +18,11 @@ export default {
       size: {},
       pages: [],
       currentIndex: 0,
+      slideToX: false, // 是否沿着x轴方向滑动，仅当为true时滑动，并禁止y轴滑动，反之亦然
+      xLimit: 0.1, // x轴滑动的百分比
       opts: {
         auto: false,
-        distance: 0.1
+        distance: 0.2
       },
       touch: {
         sx: 0,
@@ -33,10 +34,7 @@ export default {
       }
     }
   },
-  created() {
-
-  },
-  mounted() {
+  mounted () {
     this.init()
   },
   computed: {
@@ -50,12 +48,11 @@ export default {
       const len = this.$children.length
       for (let i = 0; i < len; i++) {
         const slide = this.$children[i].$el
-        slide.style = 'width:' + this.size.width + 'px';
+        slide.style = 'width:' + this.size.width + 'px'
         this.pages.push(i)
       }
-      this.baseStyle = 'height:100%;width:' + (this.size.width * len) + 'px;';
-      this.pageStyle = 'width:' + (25 * len) + 'px';
-
+      this.baseStyle = 'height:100%;width:' + (this.size.width * len) + 'px;'
+      this.pageStyle = 'width:' + (25 * len) + 'px'
     },
     /**
      * 滚动到某页面
@@ -63,61 +60,72 @@ export default {
      * @param {number} dis 当前距离
      */
     slideTo: function (index, dis) {
-      let style = '';
-      if (this.currentIndex != index) {
-        this.currentIndex = index;
+      let style = ''
+      if (this.currentIndex !== index) {
+        this.currentIndex = index
         style = 'transition: transform 1s;'
       } else {
-        let s = Math.abs(dis / this.size.width);
+        const s = Math.abs(dis / this.size.width)
         style = 'transition: transform ' + s + 's;'
       }
-      this.transformStyle = 'transform:translateX(' + (- this.currentIndex * this.size.width) + 'px);' + style;
+      this.slide(-this.currentIndex * this.size.width, style)
     },
-    slide: function (dis) {
-      this.transformStyle = 'transform:translateX(' + dis + 'px);'
-    },
-    /**
-     * 显示被限制滑动的动画特效
-     * @param {mumber} x 
-     * @param {number} y  
-     */
-    showLimitAnimation: function (x, y) {
-      let ctx = this.$refs.ktcanvas.getContext('2d');
-      ctx.lineWidth = 6;
-      ctx.strokeStyle = "#333";
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.quadraticCurveTo(x, y, 0, this.$el.clientHeight);
-      ctx.stroke();
+    slide: function (dis, style) {
+      let transform = 'transform:translateX(' + dis + 'px);'
+      if (style) {
+        transform += style
+      }
+      this.transformStyle = transform
+
+      this.$emit('onSlidingTransformAnim', { dis: dis / this.size.width, style: style })
     },
     touchstart: function (event) {
-      this.touch.sx = event.touches[0].clientX;
-      this.touch.xdis = 0;
+      this.touch.sx = event.touches[0].clientX
+      this.touch.xdis = 0
     },
     touchend: function (event) {
       // 判断distances是否
-      let limit = this.size.width * this.opts.distance;
-      let tempIndex = this.currentIndex;
+      const limit = this.size.width * this.opts.distance
+      let tempIndex = this.currentIndex
       if (this.touch.xdis > limit) {
-        tempIndex--;
+        tempIndex--
       } else if (this.touch.xdis < -limit) {
-        tempIndex++;
+        tempIndex++
       }
-      this.slideTo(tempIndex, this.touch.xdis);
+      this.slideTo(tempIndex, this.touch.xdis)
+
+      if (this.slideToX) {
+        // 当沿x轴滚动时，禁止事件冒泡
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      this.slideToX = false
     },
     touchmove: function (event) {
+      const xdis = event.touches[0].clientX - this.touch.sx
 
-      this.touch.xdis = event.touches[0].clientX - this.touch.sx;
+      if (Math.abs(xdis) > this.xLimit * this.size.width) {
+        this.slideToX = true
+      }
+
+      if (this.slideToX) {
+        // 当沿x轴滚动时，禁止事件冒泡
+        event.preventDefault()
+        event.stopPropagation()
+      } else {
+        return
+      }
+
+      this.touch.xdis = xdis
 
       if (this.currentIndex < 1 && this.touch.xdis > 0) {
         this.touch.xdis = 0
-      } else if (this.currentIndex == this.$children.length - 1 && this.touch.xdis < 0) {
+      } else if (this.currentIndex === this.$children.length - 1 && this.touch.xdis < 0) {
         this.touch.xdis = 0
       }
 
-      this.touch.xt = - this.currentIndex * this.size.width + this.touch.xdis
-
-      // this.showLimitAnimation()
+      this.touch.xt = -this.currentIndex * this.size.width + this.touch.xdis
 
       this.slide(this.touch.xt)
     }

@@ -9,8 +9,15 @@
   * ----------------------------------------------------
   * */
 .kt-app {
-  position: relative;
+  position: absolute;
   height: 100%;
+  background-color: white;
+
+  .kt-app-container{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+  }
 
   .kt-header {
     height: 48px;

@@ -9,5 +9,6 @@
     ----------------------------------------------------
 -->
 <div class="kt-tabs">
-    <!-- TODO: kt-tabs -->
+    <slot></slot>
+    <div v-if="signOpts.isShow" class="slidingSign" :style='signStyle'></div>
 </div>
