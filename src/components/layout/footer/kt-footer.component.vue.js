@@ -17,7 +17,7 @@ export default {
     init: function () {
       for (let i = 0, len = this.$parent.$children.length; i < len; i++) {
         if (this.$parent.$children[i].$options._componentTag === 'kt-content') {
-          this.$parent.$children[i].myClass += 'has-footer '
+          this.$parent.$children[i].ktContentClass += 'has-footer '
           return
         }
       }

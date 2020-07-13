@@ -9,5 +9,13 @@
   * ----------------------------------------------------
   * */
 export default {
-  name: 'home'
+  name: 'home',
+  data () {
+    return {
+      homeScrollOpts: {
+        canRefresh: true,
+        canLoadMore: true
+      }
+    }
+  }
 }

@@ -8,7 +8,8 @@
     2020-06-08 09:59:15     wang.kt     初始化文档
     ----------------------------------------------------
 -->
-<div class="kt-content" :class="myClass">
-    <!-- TODO: kt-content -->
-    <slot></slot>
+<div class="kt-content" :class="ktContentClass">
+    <kt-scorll scroll="myScorll" :opts="myOpts">
+        <slot></slot>
+    </kt-scorll>
 </div>

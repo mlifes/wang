@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <kt-transition>
+    <kt-transition :rootList="rootList">
       <keep-alive>
         <router-view />
       </keep-alive>
@@ -10,7 +10,17 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {
+      rootList: {
+        '/': true,
+        '/work': true,
+        '/unvi': true,
+        '/person': true
+      }
+    }
+  }
 }
 </script>
 

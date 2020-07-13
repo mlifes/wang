@@ -12,7 +12,7 @@
     <div class="container" :style="style" @touchstart="touchstart" @touchend="touchend" @touchmove="touchmove">
         <slot></slot>
     </div>
-    <div class="page" :style="pageStyle">
+    <div v-if="myOpts.showPage" class="page" :style="pageStyle">
         <div class="dot" :class="{ active: index === currentIndex }" v-for='(item,index) of pages'
             @click="slideTo(index,0)"></div>
     </div>

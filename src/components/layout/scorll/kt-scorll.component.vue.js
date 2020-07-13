@@ -1,0 +1,330 @@
+/**
+  * @author wang.kt
+  * @date 2020-07-11 09:58:59
+  * @version 1.0
+  * @description 功能描述
+  * ----------------------------------------------------
+  * date          author         desc
+  * 2020-07-11 09:58:59 wang.kt      初始化文档
+  * ----------------------------------------------------
+  * */
+function Refresh () {
+  const sh = window.screen.availHeight || document.body.clientHeight
+  this.msgHeight = 32
+  this.iconHeight = 24
+  this.minHeight = this.msgHeight + this.iconHeight / 2
+  this.maxHeight = this.msgHeight + this.iconHeight
+  this.onSubmitHeight = this.msgHeight + this.iconHeight * 1.5
+  this.containerHeight = 2.5 * this.onSubmitHeight
+
+  this.dis = 0
+
+  // 计算距离
+  this.computedHeight = function (dis) {
+    // 当高度小于提交高度时，直接返回。大于提交高度时，按比率返回
+    if (dis < this.onSubmitHeight) {
+      return dis
+    } else {
+      return this.onSubmitHeight + (this.containerHeight / (sh - this.onSubmitHeight)) * (dis - this.onSubmitHeight)
+    }
+  }
+
+  this.AnimTimer = (function () {
+    // 定义动画持续的时长，3s = 30
+    const limit = 15
+    let isComplete = false
+    let num = 0
+
+    function animHandle (onComplete, onRefresh) {
+      setTimeout(function () {
+        num++
+        if (num > limit) {
+          num = 0
+          if (isComplete) {
+            // 结束时，重置方法并退出
+            isComplete = false
+            onComplete && onComplete()
+            return
+          }
+        }
+        const percent = parseInt(num / limit * 100)
+        onRefresh && onRefresh(percent)
+        animHandle(onComplete, onRefresh)
+      }, 100)
+    }
+
+    return {
+      start: function (onCallBack, onComplete, onRefresh) {
+        isComplete = false
+        onCallBack && onCallBack()
+        animHandle(onComplete, onRefresh)
+      },
+      complete: function () {
+        isComplete = true
+      }
+    }
+  }())
+}
+
+function LoadMore () {
+  const sh = window.screen.availHeight || document.body.clientHeight
+  this.msgHeight = 32
+  this.onSubmitHeight = 2 * this.msgHeight
+  this.containerHeight = 2.5 * this.onSubmitHeight
+  this.dis = 0
+
+  this.computedHeight = function (dis) {
+    // 当高度小于提交高度时，直接返回。大于提交高度时，按比率返回
+    if (dis < this.onSubmitHeight) {
+      return dis
+    } else {
+      return this.onSubmitHeight + (this.containerHeight / (sh - this.onSubmitHeight)) * (dis - this.onSubmitHeight)
+    }
+  }
+  this.AnimTimer = (function () {
+    let completeHandle = null
+    return {
+      start: function (onCallBack, onComplete) {
+        completeHandle = onComplete
+        onCallBack && onCallBack()
+      },
+      complete: function () {
+        completeHandle && completeHandle()
+      }
+    }
+  }())
+}
+
+export default {
+  name: 'kt-scorll',
+  data () {
+    return {
+      default: {
+        x: 'scorllToX',
+        y: 'scorllToY'
+      },
+      sclass: '',
+      scrollBeginY: '',
+      canTouch: false,
+      myRefresh: null,
+      myLoadMore: null,
+      myOpts: {
+        canRefresh: false,
+        refreshDis: 0,
+        canLoadMore: false,
+        loadmoreDis: 0
+      }
+    }
+  },
+  props: {
+    scroll: {
+      default: function () {
+        return ''
+      }
+    },
+    opts: {
+      default: function () {
+        return {}
+      }
+    }
+  },
+  mounted () {
+    this.init()
+  },
+  methods: {
+    init: function () {
+      // 初始化样式
+      if (this.default[this.scroll]) {
+        this.sclass = this.default[this.scroll]
+      }
+      this.canRefreshAndLoadMore()
+    },
+    isRefresh: function () {
+      return this.$el.scrollTop === 0
+    },
+    isLoadMore: function () {
+      return this.$el.scrollTop === (this.$el.scrollHeight - this.$el.clientHeight)
+    },
+    touchstart: function (event) {
+      if (!this.canTouch) {
+        return
+      }
+      this.scrollBeginY = event.touches[0].clientY
+    },
+    touchend: function (event) {
+      if (!this.canTouch) {
+        return
+      }
+
+      /**
+       * 1、判断当前状态是下拉刷新还是上拉加载
+       * 2、下拉刷新时，判断结束位置是否大于设置的值，大于则执行onSubmitRefresh方法
+       * 3、上拉加载时，判断结束位置是否大于设置的值，大于则执行onSubmitLoadMore方法
+       * */
+      let dis = this.myRefresh.dis
+      if (this.isRefresh() && dis > 0) {
+        // 当下拉刷新时，执行
+        this.touchEndRefresh(dis)
+      }
+
+      dis = this.myLoadMore.dis
+      if (this.isLoadMore() && dis < 0) {
+        // 当上拉加载时，执行
+        this.touchEndLoadMore(dis)
+      }
+    },
+    touchmove: function (event) {
+      if (!this.canTouch) {
+        return
+      }
+      /**
+       * 1、touchmove事件，当发现不是下拉刷新或者上拉加载的情况下，需要更新滚动开始位置
+       * 2、当是下拉刷新时，计算拉动距离，并transform展示logo
+       * 3、当是上拉加载时，计算拉动距离，并transform展示logo
+       * */
+      if (!this.isRefresh() && !this.isLoadMore()) {
+        // 当滚动不是下拉或者上拉时，需要重置滚动开始位置
+        this.scrollBeginY = event.touches[0].clientY
+        return
+      }
+
+      const dis = event.touches[0].clientY - this.scrollBeginY
+
+      if (this.isRefresh() && dis > 0) {
+        // 当下拉刷新时，执行
+        this.myRefresh.dis = dis
+        this.touchmoveRefresh(dis)
+      }
+
+      if (this.isLoadMore() && dis < 0) {
+        // 当上拉加载时，执行
+        this.myLoadMore.dis = dis
+        this.touchmoveLoadMore(dis)
+      }
+    },
+    touchmoveRefresh: function (dis) {
+      dis = this.myRefresh.computedHeight(dis)
+      this.$refs.refresh.style = 'height:' + dis + 'px;'
+      if (dis > this.myRefresh.minHeight) {
+        // 此处主要设置icon的动画，支持最小12px到最大24px的变化
+        if (dis > this.myRefresh.maxHeight) {
+          dis = this.myRefresh.maxHeight
+        }
+        const h = dis - this.myRefresh.msgHeight
+        this.$refs.refreshicon.style = 'font-size:' + h + 'px;height:' + h + 'px;'
+      }
+    },
+    /**
+     * 滑动结束的刷新方法
+     * 1、当下拉刷新距离过长时，恢复到正常大小
+     * 2、执行动画
+     */
+    touchEndRefresh: function (dis) {
+      dis = this.myRefresh.computedHeight(dis)
+      const that = this
+      if (dis < this.myRefresh.onSubmitHeight) {
+        // 直接隐藏
+        that.closeRefreshAnim()
+        return
+      }
+      this.myRefresh.AnimTimer.start(function () {
+        // callback回调,恢复到正常大小
+        that.showNomalRefresh()
+        // 调用onSubmit方法
+        that.onSubmitRefresh()
+      }, function () {
+        // complete回调
+        that.closeRefreshAnim()
+      })
+      setTimeout(function () {
+        that.myRefresh.AnimTimer.complete()
+      }, 3000)
+    },
+    // 恢复到正常大小
+    showNomalRefresh: function () {
+      this.$refs.refresh.style = 'height:' + this.myRefresh.onSubmitHeight + 'px;transition:height .8s;'
+    },
+    // 关闭动画
+    closeRefreshAnim: function () {
+      const delay = 1
+      this.$refs.refresh.style = 'height:0;transition:height ' + delay + 's;'
+      this.$refs.refreshicon.style = 'height:' + this.myRefresh.iconHeight / 2 + 'px;font-size:' + this.myRefresh.iconHeight / 2 + 'px;transition: all ' + 0.27 * delay + 's;'
+    },
+    touchmoveLoadMore: function (dis) {
+      dis = this.myLoadMore.computedHeight(-dis)
+      this.$refs.loadmore.style = 'height:' + dis + 'px;'
+      this.scrollBottom()
+    },
+    showNomalLoadMore: function () {
+      this.$refs.loadmore.style = 'height:' + this.myLoadMore.onSubmitHeight + 'px;transition:height .8s;'
+    },
+    touchEndLoadMore: function (dis) {
+      dis = this.myLoadMore.computedHeight(-dis)
+      const that = this
+      if (dis < this.myLoadMore.onSubmitHeight) {
+        // 直接隐藏
+        that.closeLoadMoreAnim()
+        return
+      }
+      this.myLoadMore.AnimTimer.start(function () {
+        // callback回调,恢复到正常大小
+        that.showNomalLoadMore()
+        // 调用onSubmit方法
+        that.onSubmitLoadMore()
+      }, function () {
+        that.closeLoadMoreAnim()
+      })
+      setTimeout(function () {
+        that.myLoadMore.AnimTimer.complete()
+      }, 3000)
+    },
+    // 关闭动画,隐藏并滚动到特定位置
+    closeLoadMoreAnim: function () {
+      this.$refs.loadmore.style = 'height:0;transition:height 1s;'
+    },
+    scrollBottom: function () {
+      this.$el.scrollTop = (this.$el.scrollHeight - this.$el.clientHeight)
+    },
+    canRefreshAndLoadMore: function () {
+      if (this.opts) {
+        this.myOpts.canRefresh = this.opts.canRefresh
+        this.myOpts.canLoadMore = this.opts.canLoadMore
+      }
+
+      this.canTouch = this.myOpts.canRefresh || this.myOpts.canLoadMore
+      if (this.canTouch) {
+        // 初始化配置
+        this.myRefresh = new Refresh()
+        this.myLoadMore = new LoadMore()
+        this.myOpts.refreshDis = this.myRefresh.onSubmitHeight
+        this.myOpts.loadmoreDis = this.myLoadMore.onSubmitHeight
+
+        if (this.opts) {
+          if (this.opts.refreshDis > this.myOpts.refreshDis) {
+            this.myOpts.refreshDis = this.opts.refreshDis
+          }
+          if (this.opts.loadmoreDis > this.myOpts.loadmoreDis) {
+            this.myOpts.loadmoreDis = this.opts.loadmoreDis
+          }
+        }
+      }
+      return this.canTouch
+    },
+    // 提交刷新接口
+    onSubmitRefresh: function () {
+      // 提交父组件刷新接口: @onRefresh = "onRefresh(complete)"
+      const that = this
+      that.$emit('onRefresh', function () {
+        that.myRefresh.AnimTimer.complete()
+      })
+    },
+    // 提交加载接口
+    onSubmitLoadMore: function () {
+      // 提交父组件加载更多接口: @onLoadMore = "onLoadMore(complete)"
+      const that = this
+      this.$emit('onLoadMore', function () {
+        that.myLoadMore.AnimTimer.complete()
+      })
+    }
+  }
+}

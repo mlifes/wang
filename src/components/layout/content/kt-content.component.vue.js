@@ -8,11 +8,16 @@
  * 2020-06-08 09:59:15 your name      初始化文档
  * ----------------------------------------------------
  * */
+
 export default {
   name: 'kt-content',
   data () {
     return {
-      myClass: ''
+      ktContentClass: '',
+      myScorll: '',
+      myOpts: {
+
+      }
     }
   },
   props: {
@@ -20,28 +25,20 @@ export default {
       default: function () {
         return ''
       }
+    },
+    opts: {
+      default: function () {
+        return {}
+      }
     }
-  },
-  created () {
-
   },
   mounted () {
-    if (this.scroll !== '') {
-      this.$el.style = 'overflow-' + this.scroll + ':scroll;'
-    } else {
-      this.$el.style = 'overflow: hidden;'
-    }
+    this.init()
   },
   methods: {
-    resizeHeight: function () {
-      const header = document.getElementsByClassName('kt-header')[0]
-      const footer = document.getElementsByClassName('kt-footer')[0]
-      if (header) {
-        this.myClass += 'has-header '
-      }
-      if (footer) {
-        this.myClass += 'has-footer '
-      }
+    init: function () {
+      this.myScorll = this.scroll
+      this.myOpts = this.opts
     }
   }
 }

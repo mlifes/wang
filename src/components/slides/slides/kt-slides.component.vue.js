@@ -20,9 +20,10 @@ export default {
       currentIndex: 0,
       slideToX: false, // 是否沿着x轴方向滑动，仅当为true时滑动，并禁止y轴滑动，反之亦然
       xLimit: 0.1, // x轴滑动的百分比
-      opts: {
+      myOpts: {
         auto: false,
-        distance: 0.2
+        distance: 0.2,
+        showPage: false
       },
       touch: {
         sx: 0,
@@ -31,6 +32,13 @@ export default {
         ydis: 0,
         xt: 0,
         yt: 0
+      }
+    }
+  },
+  props: {
+    opts: {
+      default: function () {
+        return {}
       }
     }
   },
@@ -44,6 +52,10 @@ export default {
   },
   methods: {
     init: function () {
+      // 初始化配置
+      for (const key in this.opts) {
+        this.myOpts[key] = this.opts[key]
+      }
       this.size.width = this.$el.clientWidth
       const len = this.$children.length
       for (let i = 0; i < len; i++) {
@@ -85,7 +97,7 @@ export default {
     },
     touchend: function (event) {
       // 判断distances是否
-      const limit = this.size.width * this.opts.distance
+      const limit = this.size.width * this.myOpts.distance
       let tempIndex = this.currentIndex
       if (this.touch.xdis > limit) {
         tempIndex--

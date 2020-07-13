@@ -1,29 +1,16 @@
 <!--
-    @author your name
-    @date 2020-06-05 12:11:37
+    @author wang.kt
+    @date 2020-07-13 14:33:48
     @version 1.0
     @description 功能描述
     ----------------------------------------------------
     date          author      desc
-    2020-06-05 12:11:37      your name   初始化文档
+    2020-07-13 14:33:48      wang.kt   初始化文档
     ----------------------------------------------------
 -->
-<kt-app class="tabs">
+<kt-app class="index">
     <kt-content>
-        <kt-slides style="height: 100%;width: 100%;" ref="ktSlides" @onSlidingTransformAnim="onSlidingTransformAnim">
-            <kt-slide>
-                <kt-home></kt-home>
-            </kt-slide>
-            <kt-slide>
-                <kt-work></kt-work>
-            </kt-slide>
-            <kt-slide>
-                <kt-unvi></kt-unvi>
-            </kt-slide>
-            <kt-slide>
-                <kt-person></kt-person>
-            </kt-slide>
-        </kt-slides>
+        <router-view />
     </kt-content>
     <kt-footer>
         <kt-tabs ref="ktTabs" :opts="tabsOpts">

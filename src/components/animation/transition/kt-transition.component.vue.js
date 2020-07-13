@@ -8,20 +8,22 @@
   * 2020-07-09 09:53:52 wang.kt      初始化文档
   * ----------------------------------------------------
   * */
-
 export default {
   name: 'kt-transition',
   data () {
     return {
+      // 白名单中的路径，将不使用该动画效果
+      myWhiteList: { '/': true },
+      showAnim: true,
       ktTransitionName: '',
       toBack: false
     }
   },
   props: {
-    rootRouter: {
-      type: String,
+    rootList: {
+      type: Object,
       default: function () {
-        return '/'
+        return {}
       }
     }
   },
@@ -31,10 +33,17 @@ export default {
       if (this.$router.isBack) {
         this.ktTransitionName = 'slide-left'
       } else {
-        this.ktTransitionName = 'slide-right'
+        if (!this.myWhiteList[to.path]) {
+          this.ktTransitionName = 'slide-right'
+        }
       }
       this.toBack = this.$router.isBack
       this.$router.isBack = false
+    }
+  },
+  mounted () {
+    for (const key in this.rootList) {
+      this.myWhiteList[key] = this.rootList[key]
     }
   },
   methods: {

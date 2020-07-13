@@ -12,6 +12,8 @@ export default {
   name: 'kt-tabs',
   data () {
     return {
+      // 默认初始值为 0
+      currentIdx: 0,
       signSize: '',
       signTransform: '',
       signBar: '',
@@ -19,6 +21,7 @@ export default {
         isShow: true,
         color: '#009688',
         height: '3',
+        idx: 0,
         ratio: 1,
         isTop: true
       },
@@ -79,15 +82,34 @@ export default {
       style += this.signOpts.isTop ? 'top:0;' : 'bottom:0;'
 
       this.signSize = style
+
+      this.slideTo(this.signOpts.idx, true)
     },
     // 绑定动画效果,此处对应sliders中的方法
     bindTransformAnim: function (data) {
       if (!this.signOpts.isShow) {
         return
       }
+      const idx = parseInt(-data.dis)
+      if (this.currentIdx === idx) {
+        return
+      }
+      this.currentIdx = idx
       let transform = 'transform:translateX(' + -1 * data.dis * this.cw + 'px);'
       if (data.style) {
         transform += data.style
+      }
+      this.signTransform = transform
+    },
+    // tabs自己的滚动动画
+    slideTo: function (index, disAnim) {
+      if (!this.signOpts.isShow || this.currentIdx === index) {
+        return
+      }
+      this.currentIdx = index
+      let transform = 'transform:translateX(' + index * this.cw + 'px);'
+      if (!disAnim) {
+        transform += 'transition: transform 1s;'
       }
       this.signTransform = transform
     }
