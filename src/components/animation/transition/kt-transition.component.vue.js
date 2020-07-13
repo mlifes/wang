@@ -34,6 +34,7 @@ export default {
         this.ktTransitionName = 'slide-left'
       } else {
         if (!this.myWhiteList[to.path]) {
+          // 当长度为1,，即第一次跳转到webapp中时，不执行动画
           this.ktTransitionName = 'slide-right'
         }
       }

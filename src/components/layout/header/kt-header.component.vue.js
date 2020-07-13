@@ -12,6 +12,7 @@ export default {
   name: 'kt-header',
   mounted () {
     this.init()
+    console.log('header')
   },
   methods: {
     init: function () {

@@ -13,6 +13,7 @@ export default {
   data () {
     return {
       // 默认初始值为 0
+      hasInit: false,
       currentIdx: 0,
       signSize: '',
       signTransform: '',
@@ -42,6 +43,7 @@ export default {
     }
   },
   mounted () {
+    console.log('tabs')
     this.init()
   },
   methods: {
@@ -54,12 +56,12 @@ export default {
       for (let i = 0; i < this.len; i++) {
         this.$children[i].style = 'width:' + this.cw + 'px;'
       }
+      this.hasInit = true
     },
 
     // 初始化配置项
     initOpts: function () {
       this.len = this.$children.length
-
       this.cw = this.$el.clientWidth / this.len
 
       if (this.opts) {

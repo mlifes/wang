@@ -12,6 +12,7 @@
   position: absolute;
   height: 100%;
   background-color: white;
+  
 
   .kt-app-container{
     position: relative;
@@ -25,6 +26,8 @@
   }
 
   .kt-content {
+
+    height: 100%;
 
     &.has-header.has-footer {
       height: calc(100% - 48px - 64px);

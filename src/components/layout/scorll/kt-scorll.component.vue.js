@@ -130,6 +130,7 @@ export default {
   },
   mounted () {
     this.init()
+    console.log('scroll')
   },
   methods: {
     init: function () {
@@ -164,12 +165,14 @@ export default {
       let dis = this.myRefresh.dis
       if (this.isRefresh() && dis > 0) {
         // 当下拉刷新时，执行
+        this.myRefresh.dis = 0
         this.touchEndRefresh(dis)
       }
 
       dis = this.myLoadMore.dis
       if (this.isLoadMore() && dis < 0) {
         // 当上拉加载时，执行
+        this.myLoadMore.dis = 0
         this.touchEndLoadMore(dis)
       }
     },

@@ -13,11 +13,7 @@ export default {
   name: 'kt-content',
   data () {
     return {
-      ktContentClass: '',
-      myScorll: '',
-      myOpts: {
-
-      }
+      ktContentClass: ''
     }
   },
   props: {
@@ -34,11 +30,17 @@ export default {
   },
   mounted () {
     this.init()
+    console.log('content')
   },
   methods: {
     init: function () {
-      this.myScorll = this.scroll
-      this.myOpts = this.opts
+      if (this.$parent.$options._componentTag === 'kt-app') {
+        for (let i = 0, len = this.$parent.$children.length; i < len; i++) {
+          if (this.$parent.$children[i].$options._componentTag === 'kt-header') {
+            this.ktContentClass += 'has-header '
+          }
+        }
+      }
     }
   }
 }

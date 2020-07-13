@@ -9,7 +9,7 @@
     ----------------------------------------------------
 -->
 <div class="kt-content" :class="ktContentClass">
-    <kt-scorll scroll="myScorll" :opts="myOpts">
+    <kt-scorll :scroll="scroll" :opts="opts" ref="ktScroll">
         <slot></slot>
     </kt-scorll>
 </div>

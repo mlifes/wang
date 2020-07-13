@@ -12,13 +12,16 @@ export default {
   name: 'kt-footer',
   mounted () {
     this.init()
+    console.log('footer')
   },
   methods: {
     init: function () {
-      for (let i = 0, len = this.$parent.$children.length; i < len; i++) {
-        if (this.$parent.$children[i].$options._componentTag === 'kt-content') {
-          this.$parent.$children[i].ktContentClass += 'has-footer '
-          return
+      if (this.$parent.$options._componentTag === 'kt-app') {
+        for (let i = 0, len = this.$parent.$children.length; i < len; i++) {
+          if (this.$parent.$children[i].$options._componentTag === 'kt-content') {
+            this.$parent.$children[i].ktContentClass += 'has-footer '
+            return
+          }
         }
       }
     }

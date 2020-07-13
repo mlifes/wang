@@ -12,7 +12,10 @@ export default {
   name: 'articles',
   data () {
     return {
-
+      articleScrollOpts: {
+        canRefresh: true,
+        canLoadMore: true
+      }
     }
   }
 }
