@@ -8,7 +8,9 @@
     2020-06-08 21:06:38      wang.kt   初始化文档
     ----------------------------------------------------
 -->
-<div class="kt-tabs">
-    <slot></slot>
-    <div v-if="signOpts.isShow" class="slidingSign" :style='signStyle'></div>
+<div class="kt-tabs" :class="{'scrollToX':scrollX}" ref="tabsRef">
+    <div class="rail" :style="railStyle" >
+        <slot></slot>
+    </div>
+    <div v-if="opts.isShow" class="slidingSign" :style='signStyle'></div>
 </div>

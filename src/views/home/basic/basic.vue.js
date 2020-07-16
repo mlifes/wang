@@ -1,15 +1,13 @@
 /**
-  * @author your name
-  * @date 2020-06-05 18:19:32
+  * @author wang.kt
+  * @date 2020-07-14 16:43:11
   * @version 1.0
   * @description 功能描述
   * ----------------------------------------------------
   * date          author         desc
-  * 2020-06-05 18:19:32      your name      初始化文档
+  * 2020-07-14 16:43:11 wang.kt      初始化文档
   * ----------------------------------------------------
   * */
-.kt-header {
-  height: 48px;
-  line-height: 48px;
-  background: white;
+export default {
+  name: 'basic'
 }

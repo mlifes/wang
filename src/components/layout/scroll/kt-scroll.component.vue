@@ -10,6 +10,6 @@
   2020-07-11 09:58:59 wang.kt     初始化文档
   ----------------------------------------------------
   -->
-<template src="./kt-scorll.component.vue.html" lang="html"></template>
-<script src="./kt-scorll.component.vue.js" lang="js"></script>
-<style src="./kt-scorll.component.vue.scss" scoped lang="scss"></style>
+<template src="./kt-scroll.component.vue.html" lang="html"></template>
+<script src="./kt-scroll.component.vue.js" lang="js"></script>
+<style src="./kt-scroll.component.vue.scss" scoped lang="scss"></style>

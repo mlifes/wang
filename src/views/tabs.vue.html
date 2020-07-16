@@ -10,27 +10,16 @@
 -->
 <kt-app class="tabs">
     <kt-content>
-        <kt-slides style="height: 100%;width: 100%;" ref="ktSlides" @onSlidingTransformAnim="onSlidingTransformAnim">
-            <kt-slide>
-                <kt-home></kt-home>
-            </kt-slide>
-            <kt-slide>
-                <kt-work></kt-work>
-            </kt-slide>
-            <kt-slide>
-                <kt-unvi></kt-unvi>
-            </kt-slide>
-            <kt-slide>
-                <kt-person></kt-person>
-            </kt-slide>
-        </kt-slides>
+        <keep-alive>
+            <router-view />
+        </keep-alive>
     </kt-content>
     <kt-footer>
         <kt-tabs ref="ktTabs" :opts="tabsOpts">
-            <kt-tab @click.native="onTabClick(0)">HOME</kt-tab>
-            <kt-tab @click.native="onTabClick(1)">WORK</kt-tab>
-            <kt-tab @click.native="onTabClick(2)">UNVI</kt-tab>
-            <kt-tab @click.native="onTabClick(3)">PERSON</kt-tab>
+            <kt-tab :class="{'active':idx === 0}" @click.native="onTabClick(0,'/')">HOME</kt-tab>
+            <kt-tab :class="{'active':idx === 1}" @click.native="onTabClick(1,'/work')">WORK</kt-tab>
+            <kt-tab :class="{'active':idx === 2}" @click.native="onTabClick(2,'/unvi')">UNVI</kt-tab>
+            <kt-tab :class="{'active':idx === 3}" @click.native="onTabClick(3,'/person')">PERSON</kt-tab>
         </kt-tabs>
     </kt-footer>
 </kt-app>

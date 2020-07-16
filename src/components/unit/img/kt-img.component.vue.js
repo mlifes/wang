@@ -9,12 +9,16 @@
   * 2020-06-15 17:25:38 wang.kt      初始化文档
   * ----------------------------------------------------
   * */
-import scorll from '../../../utils/scorll.utils'
-
+import { throttle } from '../../../utils/tool.utils'
 import def from '../../../assets/components/unit/img/def.png'
 
 export default {
   name: 'kt-img',
+  data () {
+    return {
+      lazyHandle: null
+    }
+  },
   props: {
     src: {
       type: String,
@@ -46,10 +50,10 @@ export default {
     this.$nextTick(() => {
       const that = this
       if (that.delay) {
-        scorll.attach(that.$parent.$el)
-        scorll.bind(that, function () {
+        that.lazyHandle = throttle(function () {
           that.refresh()
-        })
+        }, 200)
+        that.$parent.$el.addEventListener('scroll', that.lazyHandle)
       }
       that.refresh()
     })
@@ -74,7 +78,8 @@ export default {
         if ((dx > 0 && dx < window.innerWidth) ||
           (dy > 0 && dy < window.innerHeight)) {
           // 解除绑定
-          scorll.unbind(that)
+          console.log('unbind')
+          that.$parent.$el.removeEventListener('scroll', that.lazyHandle)
           that.ktImg = that.src
           that.$forceUpdate()
           const img = that.$el.children[0]

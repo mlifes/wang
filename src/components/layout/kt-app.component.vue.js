@@ -9,5 +9,16 @@
  * ----------------------------------------------------
  * */
 export default {
-  name: 'kt-app'
+  name: 'kt-app',
+  mounted () {
+    this.onReSizeLisenter()
+  },
+  methods: {
+    onReSizeLisenter: function () {
+      const that = this
+      window.onresize = function () {
+        that.$forceUpdate()
+      }
+    }
+  }
 }

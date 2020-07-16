@@ -8,15 +8,15 @@
     2020-07-11 09:58:59      wang.kt   初始化文档
     ----------------------------------------------------
 -->
-<div class="kt-scorll" :class="sclass" @touchstart="touchstart" @touchend="touchend" @touchmove="touchmove">
-    <div class="kt-scorll-refresh" v-if="myOpts.canRefresh" ref="refresh">
+<div class="kt-scroll" :class="sclass" @touchstart="touchstart" @touchend="touchend" @touchmove="touchmove">
+    <div class="kt-scroll-refresh" v-if="opts.canRefresh" ref="refresh">
         <div class="refresh-icon" ref="refreshicon">
             <div class="icon-wang"></div>
         </div>
         <div class="refresh-msg">欢迎使用下拉刷新功能</div>
     </div>
     <slot></slot>
-    <div class="kt-scorll-loadmore" v-if="myOpts.canLoadMore" ref="loadmore">
-        欢迎使用上拉加载功能
+    <div class="kt-scroll-loadmore" v-if="opts.canLoadMore" ref="loadmore">
+        {{opts.noData ? '您已经到达星球底部···' : '欢迎使用上拉加载功能'}}
     </div>
 </div>

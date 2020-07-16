@@ -8,46 +8,17 @@
     2020-06-08 20:48:23      wang.kt   初始化文档
     ----------------------------------------------------
 -->
-<kt-scorll class="home" scroll="y" :opts="homeScrollOpts">
-    <a href="#/article">JUST GO HOME</a>
-    <br />
-    <br />
-    <br />
-    <br />
-    <kt-img style="height: 30vw;" src='http://img0.imgtn.bdimg.com/it/u=3899704889,2128638005&fm=26&gp=0.jpg'>
-    </kt-img>
-    <br />
-    <br />
-    <br />
-    <kt-img style="height: 30vw;"></kt-img>
-    <br />
-    <br />
-    <br />
-    <kt-img style="height: 30vw;" src='http://img0.imgtn.bdimg.com/it/u=3899704889,2128638005&fm=26&gp=0.jpg'>
-    </kt-img>
-    <br />
-    <br />
-    <br />
-    <kt-img style="height: 30vw;" src='http://img0.imgtn.bdimg.com/it/u=3899704889,2128638005&fm=26&gp=0.jpg'>
-    </kt-img>
-    <br />
-    <br />
-    <br />
-    <br />
-    <kt-img style="height: 30vw;" src='http://img0.imgtn.bdimg.com/it/u=3899704889,2128638005&fm=26&gp=0.jpg'>
-    </kt-img>
-    <br />
-    <br />
-    <br />
-    <kt-img style="height: 30vw;"></kt-img>
-    <br />
-    <br />
-    <br />
-    <kt-img style="height: 30vw;" src='http://img0.imgtn.bdimg.com/it/u=3899704889,2128638005&fm=26&gp=0.jpg'>
-    </kt-img>
-    <br />
-    <br />
-    <br />
-    <kt-img style="height: 30vw;" src='http://img0.imgtn.bdimg.com/it/u=3899704889,2128638005&fm=26&gp=0.jpg'>
-    </kt-img>
-</kt-scorll>
+<div class="home">
+    <kt-header>
+        <kt-tabs ref="ktTabs" :opts="tabsOpts" @onTabsIndexChange="onTabsChange">
+            <kt-tab @click.native="onTabClick(index)" v-for="(item,index) in list" :key="index">{{item.name}}</kt-tab>
+        </kt-tabs>
+    </kt-header>
+    <kt-content>
+        <kt-slides style="height: 100%;width: 100%;" ref="ktSlides" @onSlidingTransformAnim="onSlidingTransformAnim">
+            <kt-slide v-for="(item,index) in list" :key="index">
+                <component v-if="item.isLoad" :is="item.component"></component>
+            </kt-slide>
+        </kt-slides>
+    </kt-content>
+</div>

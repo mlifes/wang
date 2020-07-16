@@ -8,4 +8,10 @@
   * 2020-06-05 12:11:37      your name      初始化文档
   * ----------------------------------------------------
   * */
-.tabs {}
+.tabs {
+  .active{
+    font-weight: bolder;
+    color: #673ab7;
+    text-shadow: 0px 0px 1px #607D8B;
+  }
+}

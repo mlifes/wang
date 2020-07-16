@@ -8,6 +8,8 @@
   * 2020-07-11 09:58:59 wang.kt      初始化文档
   * ----------------------------------------------------
   * */
+import { mergeOpts } from '../../../utils/tool.utils'
+
 function Refresh () {
   const sh = window.screen.availHeight || document.body.clientHeight
   this.msgHeight = 32
@@ -31,7 +33,7 @@ function Refresh () {
 
   this.AnimTimer = (function () {
     // 定义动画持续的时长，3s = 30
-    const limit = 15
+    const limit = 3
     let isComplete = false
     let num = 0
 
@@ -96,16 +98,15 @@ function LoadMore () {
 }
 
 export default {
-  name: 'kt-scorll',
+  name: 'kt-scroll',
   data () {
     return {
       default: {
-        x: 'scorllToX',
-        y: 'scorllToY'
+        x: 'scrollToX',
+        y: 'scrollToY'
       },
       sclass: '',
       scrollBeginY: '',
-      canTouch: false,
       myRefresh: null,
       myLoadMore: null,
       myOpts: {
@@ -140,6 +141,9 @@ export default {
       }
       this.canRefreshAndLoadMore()
     },
+    canTouch: function () {
+      return this.opts.canRefresh || this.opts.canLoadMore
+    },
     isRefresh: function () {
       return this.$el.scrollTop === 0
     },
@@ -147,37 +151,36 @@ export default {
       return this.$el.scrollTop === (this.$el.scrollHeight - this.$el.clientHeight)
     },
     touchstart: function (event) {
-      if (!this.canTouch) {
+      if (!this.canTouch()) {
         return
       }
       this.scrollBeginY = event.touches[0].clientY
     },
     touchend: function (event) {
-      if (!this.canTouch) {
+      if (!this.canTouch()) {
         return
       }
-
       /**
        * 1、判断当前状态是下拉刷新还是上拉加载
        * 2、下拉刷新时，判断结束位置是否大于设置的值，大于则执行onSubmitRefresh方法
        * 3、上拉加载时，判断结束位置是否大于设置的值，大于则执行onSubmitLoadMore方法
        * */
       let dis = this.myRefresh.dis
-      if (this.isRefresh() && dis > 0) {
+      if (this.opts.canRefresh && this.isRefresh() && dis > 0) {
         // 当下拉刷新时，执行
         this.myRefresh.dis = 0
         this.touchEndRefresh(dis)
       }
 
       dis = this.myLoadMore.dis
-      if (this.isLoadMore() && dis < 0) {
+      if (this.opts.canLoadMore && this.isLoadMore() && dis < 0) {
         // 当上拉加载时，执行
         this.myLoadMore.dis = 0
         this.touchEndLoadMore(dis)
       }
     },
     touchmove: function (event) {
-      if (!this.canTouch) {
+      if (!this.canTouch()) {
         return
       }
       /**
@@ -193,13 +196,13 @@ export default {
 
       const dis = event.touches[0].clientY - this.scrollBeginY
 
-      if (this.isRefresh() && dis > 0) {
+      if (this.opts.canRefresh && this.isRefresh() && dis > 0) {
         // 当下拉刷新时，执行
         this.myRefresh.dis = dis
         this.touchmoveRefresh(dis)
       }
 
-      if (this.isLoadMore() && dis < 0) {
+      if (this.opts.canLoadMore && this.isLoadMore() && dis < 0) {
         // 当上拉加载时，执行
         this.myLoadMore.dis = dis
         this.touchmoveLoadMore(dis)
@@ -289,29 +292,24 @@ export default {
       this.$el.scrollTop = (this.$el.scrollHeight - this.$el.clientHeight)
     },
     canRefreshAndLoadMore: function () {
-      if (this.opts) {
-        this.myOpts.canRefresh = this.opts.canRefresh
-        this.myOpts.canLoadMore = this.opts.canLoadMore
-      }
+      mergeOpts(this.opts, this.myOpts)
 
-      this.canTouch = this.myOpts.canRefresh || this.myOpts.canLoadMore
-      if (this.canTouch) {
+      if (this.canTouch()) {
         // 初始化配置
         this.myRefresh = new Refresh()
         this.myLoadMore = new LoadMore()
-        this.myOpts.refreshDis = this.myRefresh.onSubmitHeight
-        this.myOpts.loadmoreDis = this.myLoadMore.onSubmitHeight
+        this.opts.refreshDis = this.myRefresh.onSubmitHeight
+        this.opts.loadmoreDis = this.myLoadMore.onSubmitHeight
 
         if (this.opts) {
-          if (this.opts.refreshDis > this.myOpts.refreshDis) {
-            this.myOpts.refreshDis = this.opts.refreshDis
+          if (this.opts.refreshDis < this.myOpts.refreshDis) {
+            this.opts.refreshDis = this.myOpts.refreshDis
           }
-          if (this.opts.loadmoreDis > this.myOpts.loadmoreDis) {
-            this.myOpts.loadmoreDis = this.opts.loadmoreDis
+          if (this.opts.loadmoreDis < this.myOpts.loadmoreDis) {
+            this.opts.loadmoreDis = this.myOpts.loadmoreDis
           }
         }
       }
-      return this.canTouch
     },
     // 提交刷新接口
     onSubmitRefresh: function () {

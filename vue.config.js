@@ -1,3 +1,6 @@
+const CompressionPlugin = require('compression-webpack-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+
 module.exports = {
   // 设置基本地址
   publicPath: process.env.NODE_ENV === 'production' ? './' : './',
@@ -51,7 +54,21 @@ module.exports = {
 
   // 如果这个值是一个对象，则会通过 webpack-merge 合并到最终的配置中。
   // 如果这个值是一个函数，则会接收被解析的配置作为参数。该函数既可以修改配置并不返回任何东西，也可以返回一个被克隆或合并过的配置版本。
-  // configureWebpack:
+  configureWebpack: config => {
+    if (process.env.NODE_ENV === 'production') {
+      return {
+        plugins: [new CompressionPlugin({
+          test: /\.js$|\.html$|\.css/,
+          threshold: 10240, // 对超过10k的数据压缩
+          deleteOriginalAssets: false
+        }), new BundleAnalyzerPlugin({
+          analyzerMode: 'server',
+          generateStatsFile: true,
+          statsOptions: { source: false }
+        })]
+      }
+    }
+  },
   // css 配置
   css: {
     // 默认情况下，只有 *.module.[ext] 结尾的文件才会被视作 CSS Modules 模块。设置为 false 后你就可以去掉文件名中的 .module 并将所有的 *.(css|scss|sass|less|styl(us)?) 文件视为 CSS Modules 模块。

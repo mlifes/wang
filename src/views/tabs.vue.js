@@ -9,33 +9,38 @@
  * ----------------------------------------------------
  * */
 
-import home from './home/home.vue'
-import work from './work/work.vue'
-import unvi from './unvi/unvi.vue'
-import person from './person/person.vue'
-
 export default {
   name: 'tabs',
-  components: {
-    'kt-home': home,
-    'kt-work': work,
-    'kt-unvi': unvi,
-    'kt-person': person
-  },
   data () {
     return {
+      tabsPaths: {
+        '/': 0,
+        '/work': 1,
+        '/unvi': 2,
+        '/person': 3
+      },
       tabsOpts: {
-        ratio: 0.5,
-        color: 'green'
-      }
+        isShow: false
+      },
+      idx: 0
     }
   },
+  created () {
+
+  },
+  mounted () {
+    this.init()
+  },
   methods: {
-    onSlidingTransformAnim: function (data) {
-      this.$refs.ktTabs.bindTransformAnim(data)
+    init: function () {
+      this.idx = this.tabsPaths[this.$route.path]
     },
-    onTabClick: function (index) {
-      this.$refs.ktSlides.slideTo(index, 0)
+    onTabClick: function (index, name) {
+      if (this.idx === index) {
+        return
+      }
+      this.idx = index
+      this.$router.push(name)
     }
   }
 }

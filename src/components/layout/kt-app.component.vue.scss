@@ -12,38 +12,10 @@
   position: absolute;
   height: 100%;
   background-color: white;
-  
-
   .kt-app-container{
     position: relative;
     height: 100vh;
     width: 100vw;
-  }
-
-  .kt-header {
-    height: 48px;
-    line-height: 48px;
-  }
-
-  .kt-content {
-
-    height: 100%;
-
-    &.has-header.has-footer {
-      height: calc(100% - 48px - 64px);
-    }
-
-    &.has-header {
-      height: calc(100% - 48px);
-    }
-
-    &.has-footer {
-      height: calc(100% - 64px);
-    }
-  }
-
-  .kt-footer {
-    height: 64px;
-    line-height: 64px;
+    max-width: 640px;
   }
 }

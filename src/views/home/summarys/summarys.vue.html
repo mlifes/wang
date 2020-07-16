@@ -1,0 +1,17 @@
+<!--
+    @author wang.kt
+    @date 2020-07-15 08:37:14
+    @version 1.0
+    @description 功能描述
+    ----------------------------------------------------
+    date          author      desc
+    2020-07-15 08:37:14      wang.kt   初始化文档
+    ----------------------------------------------------
+-->
+<kt-scroll class="summarys" scroll='y' :opts='myOpts' @onRefresh="onRefresh" @onLoadMore="onLoadMore">
+    <div>
+        <h3>{{data.title}}</h3>
+        <h5>{{data.author}}</h5>
+        <p v-for="(item,index) in data.list" :key="index">{{item}}</p>
+    </div>
+</kt-scroll>

@@ -12,7 +12,12 @@
   position: relative;
   height: 100%;
   width: 100%;
-
+  &.scrollToX{
+    overflow-x: scroll;
+  }
+  .rail{
+    width: 100%;
+  }
   .slidingSign{
     position: absolute;
   }

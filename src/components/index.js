@@ -4,7 +4,7 @@ export default {
   'kt-header': () => import('./layout/header/kt-header.component.vue'),
   'kt-content': () => import('./layout/content/kt-content.component.vue'),
   'kt-footer': () => import('./layout/footer/kt-footer.component.vue'),
-  'kt-scorll': () => import('./layout/scorll/kt-scorll.component.vue'),
+  'kt-scroll': () => import('./layout/scroll/kt-scroll.component.vue'),
 
   'kt-slides': () => import('./slides/slides/kt-slides.component.vue'),
   'kt-slide': () => import('./slides/slide/kt-slide.component.vue'),

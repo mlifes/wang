@@ -9,4 +9,15 @@
   * ----------------------------------------------------
   * */
 .kt-content {
+  height: 100%;
+  background: whitesmoke;
+  &.has-header.has-footer {
+    height: calc(100% - 48px - 64px);
+  }
+  &.has-header {
+    height: calc(100% - 48px);
+  }
+  &.has-footer {
+    height: calc(100% - 64px);
+  }
 }

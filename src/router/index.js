@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Index from '../views/index.vue'
+import tabs from '../views/tabs.vue'
 
 // 添加返回方法，以支持对返回页面的支持
 VueRouter.prototype.goBack = function () {
@@ -12,8 +12,7 @@ Vue.use(VueRouter)
 
 const routes = [{
   path: '/',
-  name: 'index',
-  component: Index,
+  component: tabs,
   children: [{
     path: '',
     name: 'home',
