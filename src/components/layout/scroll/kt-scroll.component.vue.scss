@@ -11,6 +11,7 @@
   * */
 
 .kt-scroll {
+  position: relative;
   height: 100%;
   &.scrollToX{
     overflow-x: scroll;

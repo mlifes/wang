@@ -12,7 +12,6 @@
 // var touchstart, touchmove, touchend
 export default {
   bind: function (el, binding, vnode) {
-
     // var touch = {
     //   x: 0,
     //   y: 0

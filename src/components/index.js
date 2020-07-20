@@ -12,6 +12,8 @@ export default {
   'kt-toolbar': () => import('./toolbar/kt-toolbar.component.vue'),
   'kt-back': () => import('./toolbar/back/kt-back.component.vue'),
   'kt-img': () => import('./unit/img/kt-img.component.vue'),
+  'kt-icon': () => import('./unit/icon/kt-icon.component.vue'),
+
   'kt-transition': () => import('./animation/transition/kt-transition.component.vue'),
 
   'kt-tabs': () => import('./tabs/tabs/kt-tabs.component.vue'),

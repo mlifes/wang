@@ -119,6 +119,7 @@ export default {
     },
     // 获取文章数据，此处只是为了演示
     getData: function (params) {
+      console.log(2)
       const res = this.requestResult.slice(params.pageIndex * params.pageSize, (params.pageIndex + 1) * params.pageSize)
       if (params.pageIndex === 0) {
         // 表示刷新方法

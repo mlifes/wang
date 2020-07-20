@@ -16,10 +16,18 @@
     </kt-content>
     <kt-footer>
         <kt-tabs ref="ktTabs" :opts="tabsOpts">
-            <kt-tab :class="{'active':idx === 0}" @click.native="onTabClick(0,'/')">HOME</kt-tab>
-            <kt-tab :class="{'active':idx === 1}" @click.native="onTabClick(1,'/work')">WORK</kt-tab>
-            <kt-tab :class="{'active':idx === 2}" @click.native="onTabClick(2,'/unvi')">UNVI</kt-tab>
-            <kt-tab :class="{'active':idx === 3}" @click.native="onTabClick(3,'/person')">PERSON</kt-tab>
+            <kt-tab :class="{'active':idx === 0}" @click.native="onTabClick(0,'/')">
+                <kt-icon name="home"></kt-icon>
+            </kt-tab>
+            <kt-tab :class="{'active':idx === 1}" @click.native="onTabClick(1,'/work')">
+                <kt-icon name="work"></kt-icon>
+            </kt-tab>
+            <kt-tab :class="{'active':idx === 2}" @click.native="onTabClick(2,'/unvi')">
+                <kt-icon name="unvi"></kt-icon>
+            </kt-tab>
+            <kt-tab :class="{'active':idx === 3}" @click.native="onTabClick(3,'/person')">
+                <kt-icon name="person"></kt-icon>
+            </kt-tab>
         </kt-tabs>
     </kt-footer>
 </kt-app>

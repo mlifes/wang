@@ -1,0 +1,36 @@
+@charset "UTF-8";
+/**
+  * @author wang.kt
+  * @date 2020-07-19 18:44:51
+  * @version 1.0
+  * @description 功能描述
+  * ----------------------------------------------------
+  * date          author         desc
+  * 2020-07-19 18:44:51      wang.kt      初始化文档
+  * ----------------------------------------------------
+  * */
+.kt-scroll-top {
+  &.scrollTop{
+    position: fixed;
+    height: 48px;
+    width: 48px;
+    line-height: 48px;
+    font-size: 24px;
+    text-align: center;
+    opacity: 0;
+    color: white;
+    border-radius: 50%;
+    background: #dadada;
+    box-shadow: 0 0 3px #9E9E9E;
+    &.show{
+      display: block;
+    }
+    &.hide{
+      display: none;
+    }
+    &.autohide{
+      display: none;
+      transition: display 3s;
+    }
+  }
+}

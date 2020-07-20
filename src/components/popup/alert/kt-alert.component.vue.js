@@ -1,15 +1,13 @@
 /**
-  * @author your name
-  * @date 2020-06-05 12:11:37
+  * @author wang.kt
+  * @date 2020-07-19 18:45:19
   * @version 1.0
   * @description 功能描述
   * ----------------------------------------------------
   * date          author         desc
-  * 2020-06-05 12:11:37      your name      初始化文档
+  * 2020-07-19 18:45:19 wang.kt      初始化文档
   * ----------------------------------------------------
   * */
-.tabs {
-  .active{
-    color: #673ab7;
-  }
+export default {
+  name: 'kt-alert'
 }

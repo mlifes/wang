@@ -76,6 +76,7 @@ export default {
       if (this.currentIndex !== index) {
         this.currentIndex = index
         style = 'transition: transform 1s;'
+        this.$EventBusDispatcer.dispatchs.scrollHide()
       } else {
         const s = Math.abs(dis / this.size.width)
         style = 'transition: transform ' + s + 's;'
@@ -88,7 +89,6 @@ export default {
         transform += style
       }
       this.transformStyle = transform
-
       this.$emit('onSlidingTransformAnim', { dis: dis / this.size.width, style: style })
     },
     touchstart: function (event) {
