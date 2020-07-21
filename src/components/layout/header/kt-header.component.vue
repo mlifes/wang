@@ -12,4 +12,4 @@
   -->
 <template src="./kt-header.component.vue.html"></template>
 <script src="./kt-header.component.vue.js" lang="js"></script>
-<style src="./kt-header.component.vue.scss" scoped lang="scss"></style>
+<style src="./kt-header.component.vue.scss" lang="scss"></style>

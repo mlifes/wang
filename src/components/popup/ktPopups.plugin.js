@@ -28,7 +28,7 @@ const KtPopupsPlugins = {
     function buildPluginsComponent (ktPopupsItem) {
       const MyComponent = Vue.extend(ktPopupsItem.component)
       const myInstance = new MyComponent().$mount()
-      popupSlot.appendChild(myInstance.$el)
+      popupSlot && popupSlot.appendChild(myInstance.$el)
       Vue.prototype[ktPopupsItem.vueMethodName] = myInstance
     }
 

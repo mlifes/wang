@@ -12,9 +12,7 @@ export default {
   name: 'home',
   components: {
     'p-summarys': () => import('./summarys/summarys.vue'),
-    'p-basic': () => import('./basic/basic.vue'),
-    'p-popup': () => import('./popup/popup.vue'),
-    'p-article': () => import('./article/article.vue')
+    'p-introduction': () => import('./introduction/introduction.vue')
   },
   data () {
     return {
@@ -30,13 +28,37 @@ export default {
       // 此对象可以通过配置动态加载，用户登陆初始化后可以从vuex配置
       list: [
         { name: '简介', component: 'p-summarys', isLoad: true },
-        { name: '基础', component: 'p-basic', isLoad: false },
-        { name: '弹窗', component: 'p-popup', isLoad: false },
-        { name: '弹窗', component: 'p-popup', isLoad: false },
-        { name: '简介', component: 'p-summarys', isLoad: false },
-        { name: '基础', component: 'p-basic', isLoad: false },
-        { name: '弹窗', component: 'p-popup', isLoad: false },
-        { name: '弹窗', component: 'p-popup', isLoad: false }
+        { name: '基础', component: 'p-introduction', isLoad: false },
+        { name: '弹窗', component: 'p-introduction', isLoad: false },
+        { name: '滑动', component: 'p-introduction', isLoad: false },
+        { name: '布局', component: 'p-introduction', isLoad: false },
+        { name: '动画', component: 'p-introduction', isLoad: false }
+      ],
+      compData: [
+        [],
+        [
+          { title: '按钮组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: '图片组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: '图标组件', subtitle: '您来到了知识的荒原！', content: 'just a test' }
+        ], [
+          { title: '警告框组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: '确认框组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: '弹出框组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: '返回顶部组件', subtitle: '您来到了知识的荒原！', content: 'just a test' }
+        ], [
+          { title: '标签栏组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: '标签组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: '滑动栏组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: '滑动组件', subtitle: '您来到了知识的荒原！', content: 'just a test' }
+        ], [
+          { title: 'App组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: 'Header组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: 'Footer组件', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: '滚动组件', subtitle: '您来到了知识的荒原！', content: 'just a test' }
+        ], [
+          { title: '滑动动画', subtitle: '您来到了知识的荒原！', content: 'just a test' },
+          { title: '弹出动画', subtitle: '您来到了知识的荒原！', content: 'just a test' }
+        ]
       ]
     }
   },

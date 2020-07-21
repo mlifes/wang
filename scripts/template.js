@@ -96,7 +96,7 @@ export default {
   -->
 <template src="./${name + '.component.vue.html'}" lang="html"></template>
 <script src="./${name + '.component.vue.js'}" lang="js"></script>
-<style src="./${name + '.component.vue.scss'}" scoped lang="scss"></style>
+<style src="./${name + '.component.vue.scss'}" lang="scss"></style>
 `
   },
   directive: name => {

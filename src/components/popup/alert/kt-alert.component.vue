@@ -12,4 +12,4 @@
   -->
 <template src="./kt-alert.component.vue.html" lang="html"></template>
 <script src="./kt-alert.component.vue.js" lang="js"></script>
-<style src="./kt-alert.component.vue.scss" scoped lang="scss"></style>
+<style src="./kt-alert.component.vue.scss" lang="scss"></style>

@@ -12,4 +12,4 @@
   -->
 <template src="./kt-footer.component.vue.html" ></template>
 <script src="./kt-footer.component.vue.js" lang="js"></script>
-<style src="./kt-footer.component.vue.scss" scoped lang="scss"></style>
+<style src="./kt-footer.component.vue.scss" lang="scss"></style>

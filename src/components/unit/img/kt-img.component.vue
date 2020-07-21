@@ -12,4 +12,4 @@
   -->
 <template src="./kt-img.component.vue.html" lang="html"></template>
 <script src="./kt-img.component.vue.js" lang="js"></script>
-<style src="./kt-img.component.vue.scss" scoped lang="scss"></style>
+<style src="./kt-img.component.vue.scss" lang="scss"></style>

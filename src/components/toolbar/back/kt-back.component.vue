@@ -12,4 +12,4 @@
   -->
 <template src="./kt-back.component.vue.html" lang="html"></template>
 <script src="./kt-back.component.vue.js" lang="js"></script>
-<style src="./kt-back.component.vue.scss" scoped lang="scss"></style>
+<style src="./kt-back.component.vue.scss" lang="scss"></style>

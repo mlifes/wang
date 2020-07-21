@@ -12,4 +12,4 @@
   -->
 <template src="./kt-toolbar.component.vue.html" lang="html"></template>
 <script src="./kt-toolbar.component.vue.js" lang="js"></script>
-<style src="./kt-toolbar.component.vue.scss" scoped lang="scss"></style>
+<style src="./kt-toolbar.component.vue.scss" lang="scss"></style>

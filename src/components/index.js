@@ -18,5 +18,7 @@ export default {
   'kt-popup-anim': () => import('./animation/popup/kt-popup-anim.component.vue'),
 
   'kt-tabs': () => import('./tabs/tabs/kt-tabs.component.vue'),
-  'kt-tab': () => import('./tabs/tab/kt-tab.component.vue')
+  'kt-tab': () => import('./tabs/tab/kt-tab.component.vue'),
+
+  'kt-card': () => import('./card/kt-card.component.vue')
 }

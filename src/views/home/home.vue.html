@@ -17,7 +17,7 @@
     <kt-content>
         <kt-slides style="height: 100%;width: 100%;" ref="ktSlides" @onSlidingTransformAnim="onSlidingTransformAnim">
             <kt-slide v-for="(item,index) in list" :key="index">
-                <component v-if="item.isLoad" :is="item.component"></component>
+                <component v-if="item.isLoad" :is="item.component" :list="compData[index]"></component>
             </kt-slide>
         </kt-slides>
     </kt-content>

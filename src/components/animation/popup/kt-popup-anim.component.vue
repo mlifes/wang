@@ -12,4 +12,4 @@
   -->
 <template src="./kt-popup-anim.component.vue.html" lang="html"></template>
 <script src="./kt-popup-anim.component.vue.js" lang="js"></script>
-<style src="./kt-popup-anim.component.vue.scss" scoped lang="scss"></style>
+<style src="./kt-popup-anim.component.vue.scss" lang="scss"></style>

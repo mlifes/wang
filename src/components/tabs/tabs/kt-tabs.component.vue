@@ -12,4 +12,4 @@
   -->
 <template src="./kt-tabs.component.vue.html" lang="html"></template>
 <script src="./kt-tabs.component.vue.js" lang="js"></script>
-<style src="./kt-tabs.component.vue.scss" scoped lang="scss"></style>
+<style src="./kt-tabs.component.vue.scss" lang="scss"></style>

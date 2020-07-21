@@ -12,4 +12,4 @@
   -->
 <template src="./kt-input.component.vue.html" lang="html"></template>
 <script src="./kt-input.component.vue.js" lang="js"></script>
-<style src="./kt-input.component.vue.scss" scoped lang="scss"></style>
+<style src="./kt-input.component.vue.scss" lang="scss"></style>
