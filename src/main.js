@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './service/index'
+import './utils/index'
 import components from './components/index'
 import directives from './directives/index'
 

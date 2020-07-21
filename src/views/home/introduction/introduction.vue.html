@@ -8,12 +8,10 @@
     2020-07-21 13:39:40      wang.kt   初始化文档
     ----------------------------------------------------
 -->
-<kt-scroll class="introduction" :opts='myOpts' @onRefresh="onRefresh" @onLoadMore="onLoadMore">
+<kt-scroll class="introduction" scroll='y' :opts='myOpts' @onRefresh="onRefresh" @onLoadMore="onLoadMore">
     <kt-card v-for="(item,index) in list" :key="index">
         <div slot="title">{{item.title}}</div>
         <div slot="subtitle">{{item.subtitle}}</div>
-        <div>
-            {{item.content}}
-        </div>
+        <div v-html="item.content"></div>
     </kt-card>
 </kt-scroll>
