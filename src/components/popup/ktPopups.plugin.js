@@ -10,7 +10,9 @@
   * */
 
 import scrollTopComponent from './scrollTop/kt-scroll-top.component.vue'
+
 import alertComponent from './alert/kt-alert.component.vue'
+import popupComponent from './popup/kt-popup.component.vue'
 
 function KtPopupsItem (component, vueMethodName) {
   this.component = component
@@ -32,6 +34,7 @@ const KtPopupsPlugins = {
 
     const cargs = []
     cargs.push(new KtPopupsItem(scrollTopComponent, '$ktScrollTop'))
+    cargs.push(new KtPopupsItem(popupComponent, '$ktPopup'))
     cargs.push(new KtPopupsItem(alertComponent, '$ktAlert'))
 
     cargs.map((cur, idx, arg) => {

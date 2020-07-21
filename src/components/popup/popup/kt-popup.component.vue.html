@@ -8,6 +8,7 @@
     2020-07-19 18:46:24      wang.kt   初始化文档
     ----------------------------------------------------
 -->
-<div class="kt-popup">
-    <!-- TODO: kt-popup -->
+<div class="kt-popup mask" v-if="isShow" @click="dismiss">
+    <div class="kt-popup-container" v-bind-html="template">
+    </div>
 </div>

@@ -9,4 +9,29 @@
   * 2020-07-19 18:46:24      wang.kt      初始化文档
   * ----------------------------------------------------
   * */
-.kt-popup {}
+@keyframes popupAnim{
+  0%{
+    bottom: -100%;
+  }
+  100%{
+    bottom: 0%;
+  }
+}
+
+.kt-popup {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  &.mask{
+    background: #00000070;
+  }
+  .kt-popup-container{
+    position: absolute;
+    height: 50vh;
+    width: 100%;
+    bottom: 0;
+    background: white;
+    animation: popupAnim 1s ease forwards;
+  }
+}

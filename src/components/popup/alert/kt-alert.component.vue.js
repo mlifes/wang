@@ -23,7 +23,7 @@ export default {
     show (title, msg, btnText, cbFn) {
       this.title = title || '提示信息'
       this.msg = msg || '您来到了没有信息的星球荒原'
-      this.btnText = btnText || '确定'
+      this.btnText = btnText || '流浪'
       this.cbFn = cbFn
       // 显示弹窗动画
 
