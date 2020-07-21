@@ -9,5 +9,29 @@
   * ----------------------------------------------------
   * */
 export default {
-  name: 'kt-alert'
+  name: 'kt-alert',
+  data () {
+    return {
+      title: '',
+      msg: '',
+      btnText: '',
+      cbFn: null,
+      isShow: false
+    }
+  },
+  methods: {
+    show (title, msg, btnText, cbFn) {
+      this.title = title || '提示信息'
+      this.msg = msg || '您来到了没有信息的星球荒原'
+      this.btnText = btnText || '确定'
+      this.cbFn = cbFn
+      // 显示弹窗动画
+
+      this.isShow = true
+    },
+    hide () {
+      this.cbFn && this.cbFn()
+      this.isShow = false
+    }
+  }
 }

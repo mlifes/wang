@@ -14,7 +14,8 @@ export default {
   'kt-img': () => import('./unit/img/kt-img.component.vue'),
   'kt-icon': () => import('./unit/icon/kt-icon.component.vue'),
 
-  'kt-transition': () => import('./animation/transition/kt-transition.component.vue'),
+  'kt-slide-anim': () => import('./animation/slide/kt-slide-anim.component.vue'),
+  'kt-popup-anim': () => import('./animation/popup/kt-popup-anim.component.vue'),
 
   'kt-tabs': () => import('./tabs/tabs/kt-tabs.component.vue'),
   'kt-tab': () => import('./tabs/tab/kt-tab.component.vue')

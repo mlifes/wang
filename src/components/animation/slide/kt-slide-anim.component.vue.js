@@ -1,15 +1,15 @@
 /**
   * @author wang.kt
-  * @date 2020-07-09 09:53:52
+  * @date 2020-07-21 10:38:48
   * @version 1.0
   * @description 功能描述
   * ----------------------------------------------------
   * date          author         desc
-  * 2020-07-09 09:53:52 wang.kt      初始化文档
+  * 2020-07-21 10:38:48 wang.kt      初始化文档
   * ----------------------------------------------------
   * */
 export default {
-  name: 'kt-transition',
+  name: 'kt-slide-anim',
   data () {
     return {
       // 白名单中的路径，将不使用该动画效果

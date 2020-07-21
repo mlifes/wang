@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <kt-transition :rootList="rootList">
+    <kt-slide-anim :rootList="rootList">
       <keep-alive>
         <router-view />
       </keep-alive>
-    </kt-transition>
+    </kt-slide-anim>
   </div>
 </template>
 

@@ -1,0 +1,52 @@
+@charset "UTF-8";
+/**
+  * @author wang.kt
+  * @date 2020-07-21 10:31:52
+  * @version 1.0
+  * @description 功能描述
+  * ----------------------------------------------------
+  * date          author         desc
+  * 2020-07-21 10:31:52      wang.kt      初始化文档
+  * ----------------------------------------------------
+  * */
+  @keyframes popupAnim{
+    0% {
+      transform: translateY(100vh);
+    }
+    80%{
+      transform: translateY(-15px);
+    }
+    85%{
+      transform: translateY(5px);
+    }
+    89%{
+      transform: translateY(-10px);
+    }
+    94%{
+      transform: translateY(0px);
+    }
+    97%{
+      transform: translateY(-5px);
+    }
+    100%{
+      transform: translateY(0px);
+    }
+  }
+
+  .popup-bottom-enter-active{
+    animation: popupAnim 3s ease-in forwards;
+  }
+  
+
+  .popup-bottom-leave{
+    transform: translateY(0px);
+  }
+  
+  .popup-bottom-leave-active {
+    will-change: transform;
+    transition: all 5s ease-in-out;
+  }
+
+  .popup-bottom-leave-to {
+    transform: translateY(100%);
+  }

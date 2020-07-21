@@ -9,4 +9,76 @@
   * 2020-07-19 18:45:19      wang.kt      初始化文档
   * ----------------------------------------------------
   * */
-.kt-alert {}
+@keyframes alertPopupAnim{
+  0% {
+    top: 140vh;
+  }
+  80%{
+    top: -15px;
+  }
+  85%{
+    top: 5px;
+  }
+  89%{
+    top: -10px;
+  }
+  94%{
+    top: 0;
+  }
+  97%{
+    top: -5px;
+  }
+  100%{
+    top: 0;
+  }
+}
+.kt-alert {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  &.mask{
+    background: #00000070;
+  }
+  .kt-alert-popup{
+    position: absolute;
+    height: 60vw;
+    width: 60vw;
+    top: 140vh;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    padding: 5px;
+
+    line-height: 32px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #9E9E9E;
+    animation: alertPopupAnim 1s ease forwards;
+
+    .kt-alert-title,.kt-alert-btn{
+      position: relative;
+      height: 32px;
+      
+      text-align: center;
+    }
+    .kt-alert-title{
+      border-bottom: 1px solid #c7c7c7;
+    }
+    .kt-alert-content{
+      position: relative;
+      margin: 5px;
+      overflow-y: scroll;
+      height: calc(100% - 74px);
+      text-indent: 2em;
+      color: #9E9E9E;
+      font-size: 13px;
+    }
+    .kt-alert-btn{
+      background: blueviolet;
+      color: white;
+      border-radius: 5px;
+    }
+  }
+}

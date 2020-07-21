@@ -10,6 +10,12 @@
   * */
 
 import scrollTopComponent from './scrollTop/kt-scroll-top.component.vue'
+import alertComponent from './alert/kt-alert.component.vue'
+
+function KtPopupsItem (component, vueMethodName) {
+  this.component = component
+  this.vueMethodName = vueMethodName
+}
 
 const KtPopupsPlugins = {
   install: function (Vue, options) {
@@ -17,12 +23,20 @@ const KtPopupsPlugins = {
     popupSlot.setAttribute('id', 'app-popup-slot')
     document.body.appendChild(popupSlot)
 
-    // 初始化install
-    const MyST = Vue.extend(scrollTopComponent)
-    const mySTInstance = new MyST().$mount()
-    popupSlot.appendChild(mySTInstance.$el)
+    function buildPluginsComponent (ktPopupsItem) {
+      const MyComponent = Vue.extend(ktPopupsItem.component)
+      const myInstance = new MyComponent().$mount()
+      popupSlot.appendChild(myInstance.$el)
+      Vue.prototype[ktPopupsItem.vueMethodName] = myInstance
+    }
 
-    Vue.prototype.$ktScrollTop = mySTInstance
+    const cargs = []
+    cargs.push(new KtPopupsItem(scrollTopComponent, '$ktScrollTop'))
+    cargs.push(new KtPopupsItem(alertComponent, '$ktAlert'))
+
+    cargs.map((cur, idx, arg) => {
+      buildPluginsComponent(cur)
+    })
   }
 }
 

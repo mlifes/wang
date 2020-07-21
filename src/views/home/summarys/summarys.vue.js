@@ -98,6 +98,9 @@ export default {
     console.log('summarys')
     this.initPageList()
     this.initData()
+    this.$nextTick(function () {
+      this.$ktAlert.show('提示信息', '欢迎您来到首页···', '好的')
+    })
   },
   methods: {
     initData: function () {
