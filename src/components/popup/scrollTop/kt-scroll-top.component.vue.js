@@ -66,6 +66,11 @@ export default {
       if (this.parents.parent.scrollTop > this.parents.dis && !this.parents.isShow) {
         this.showAnim()
       }
+
+      if (this.parents.parent.scrollTop === 0 && this.parents.isShow) {
+        // 滚动到顶部时直接隐藏
+        this.hideAnim(0)
+      }
     },
     bindTouchend: function ($parent, $opts, event) {
       if (this.parents.isShow) {

@@ -13,7 +13,7 @@ export default {
   data () {
     return {
       myOpts: {
-        canRefresh: false,
+        canRefresh: true,
         canLoadMore: false,
         noData: false
       }
@@ -33,6 +33,9 @@ export default {
     },
     onLoadMore () {
 
+    },
+    onResult (value) {
+      if (value) this.$emit('onResult', value)
     }
   }
 }

@@ -30,8 +30,8 @@ export default {
       this.isShow = true
     },
     hide () {
-      this.cbFn && this.cbFn()
       this.isShow = false
+      this.cbFn && this.cbFn()
     }
   }
 }

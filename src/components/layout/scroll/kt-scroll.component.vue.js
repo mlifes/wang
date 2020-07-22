@@ -111,10 +111,9 @@ export default {
       myLoadMore: null,
       myOpts: {
         canRefresh: false,
-        refreshDis: 0,
         canLoadMore: false,
-        loadmoreDis: 0,
-        showBackTop: true // 显示返回顶部
+        showBackTop: true, // 显示返回顶部
+        noData: false
       }
     }
   },
@@ -162,10 +161,10 @@ export default {
       this.scrollBeginY = event.touches[0].clientY
     },
     touchend: function (event) {
+      if (this.opts.showBackTop) this.$ktScrollTop.bindTouchend(this)
       if (!this.canTouch()) {
         return
       }
-      if (this.opts.showBackTop) this.$ktScrollTop.bindTouchend(this)
       /**
        * 1、判断当前状态是下拉刷新还是上拉加载
        * 2、下拉刷新时，判断结束位置是否大于设置的值，大于则执行onSubmitRefresh方法
@@ -186,10 +185,10 @@ export default {
       }
     },
     touchmove: function (event) {
+      if (this.opts.showBackTop) this.$ktScrollTop.bindTouchmove(this)
       if (!this.canTouch()) {
         return
       }
-      if (this.opts.showBackTop) this.$ktScrollTop.bindTouchmove(this)
       /**
        * 1、touchmove事件，当发现不是下拉刷新或者上拉加载的情况下，需要更新滚动开始位置
        * 2、当是下拉刷新时，计算拉动距离，并transform展示logo
@@ -305,15 +304,6 @@ export default {
         // 初始化配置
         this.myRefresh = new Refresh()
         this.myLoadMore = new LoadMore()
-        this.opts.refreshDis = this.myRefresh.onSubmitHeight
-        this.opts.loadmoreDis = this.myLoadMore.onSubmitHeight
-
-        if (this.opts.refreshDis < this.myOpts.refreshDis) {
-          this.opts.refreshDis = this.myOpts.refreshDis
-        }
-        if (this.opts.loadmoreDis < this.myOpts.loadmoreDis) {
-          this.opts.loadmoreDis = this.myOpts.loadmoreDis
-        }
       }
     },
     // 提交刷新接口

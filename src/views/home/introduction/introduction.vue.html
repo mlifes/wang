@@ -10,8 +10,8 @@
 -->
 <kt-scroll class="introduction" scroll='y' :opts='myOpts' @onRefresh="onRefresh" @onLoadMore="onLoadMore">
     <kt-card v-for="(item,index) in list" :key="index">
-        <div slot="title">{{item.title}}</div>
+        <div slot="title" @click="onResult(item.type)">{{item.title}}</div>
         <div slot="subtitle">{{item.subtitle}}</div>
-        <div v-html="item.content"></div>
+        <div v-html="$options.filters.xss(item.content)"></div>
     </kt-card>
 </kt-scroll>

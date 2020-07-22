@@ -3,9 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import './service/index'
-import './utils/index'
+
 import components from './components/index'
 import directives from './directives/index'
+import filters from './filters/index'
 
 // 插件
 import ktPopupsPlugins from './components/popup/ktPopups.plugin'
@@ -21,6 +22,11 @@ for (const key in components) {
 for (const key in directives) {
   console.log(key)
   Vue.directive(key, directives[key])
+}
+
+// 遍历过滤器
+for (const key in filters) {
+  Vue.filter(key, filters[key])
 }
 
 // 使用插件

@@ -63,7 +63,7 @@
         dd: [],
         del: ['datetime'],
         details: ['open'],
-        div: [],
+        div: ['class'],
         dl: [],
         dt: [],
         em: [],
