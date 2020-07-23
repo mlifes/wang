@@ -144,29 +144,82 @@ export default {
             {
               title: 'kt-alert组件(单击测试)',
               type: 'alert',
-              subtitle: '单页面应用的全局alert弹窗',
-              content: `<p>该组件被设计为全局的alert弹窗.整个弹窗模块被设计成plugin，插入到脱离<code>&lt;div id='app' &gt;</code>的在
+              subtitle: '全局alert组件',
+              content: `<p>该组件被设计为全局的alert弹窗。整个弹窗模块被设计成plugin，插入到脱离<code>&lt;div id='app' &gt;</code>的在
               body标签下的<code>&lt;kt-popup-solt&gt;&lt;/kt-popup-solt&gt;</code>标签内。因此，其具有独立的层叠上下文和隔离事件冒泡的特性。</p>
               <p>同时，由于其独立和唯一性也导致了，其弹出的唯一性！因此，在应用中应合理设计弹窗逻辑。</p>
               <div class='code'>
-              // 在使用的过程中，用户可以直接调用全局的方法
-              this.$ktAlert.show('提示信息', '欢迎您来到首页···', '好的', cbFn)
+              // 在使用的过程中，用户可以直接调用全局的方法<br>
+              this.$ktAlert.show({<br>
+                title: '今日头条',<br>
+                msg: 'Wang是基于Vue的开源的WebApp框架，作者在不断更新中····',<br>
+                // template: \`&lt;p&gt;Wang是基于Vue的开源的webApp框架，作者在不断更新中····&lt;/p&gt;<br>
+                // &lt;p&gt;敬请期待！&lt;/p&gt;\`,<br>
+                optsClass: 'my-alert-class',<br>
+                btnText: '去吧，比卡丘!'<br>
+              })<br>
+              </div>
               `
             },
             {
-              title: 'kt-confirm组件',
-              subtitle: '您来到了知识的荒原！',
-              content: 'just a test'
+              title: 'kt-confirm组件(单击测试)',
+              type: 'confirm',
+              subtitle: '全局confirm组件。',
+              content: `<p>该组件被设计为全局的confirm弹窗。整个弹窗模块被设计成plugin，插入到脱离<code>&lt;div id='app' &gt;</code>的在
+              body标签下的<code>&lt;kt-popup-solt&gt;&lt;/kt-popup-solt&gt;</code>标签内。因此，其具有独立的层叠上下文和隔离事件冒泡的特性。</p>
+              <p>其区别于alert，是由于被设计支持component组件输入，而非仅支持template输入</p>
+              <p>同时，由于其独立和唯一性也导致了，其弹出的唯一性！因此，在应用中应合理设计弹窗逻辑。</p>
+              <div class='code'>
+              // 在使用的过程中，用户可以直接调用全局的方法<br>
+              this.$ktConfirm.show({<br>
+                title: '今日头条',<br>
+                // msg: 'Wang是基于Vue的开源的WebApp框架，作者在不断更新中····',<br>
+                // template: \`&lt;p&gt;Wang是基于Vue的开源的webApp框架，作者在不断更新中····&lt;/p&gt;<br>
+                // &lt;p&gt;敬请期待！&lt;/p&gt;\`,<br>
+                optsClass: 'my-confirm-class',<br>
+                btnText: '去吧，比卡丘!'<br>
+              })<br>
+              </div>
+              `
             },
             {
-              title: 'kt-popup组件',
-              subtitle: '您来到了知识的荒原！',
-              content: 'just a test'
+              title: 'kt-popup组件(单击测试)',
+              type: 'popup',
+              subtitle: '全局popup组件',
+              content: `<p>该组件被设计为全局的popup容器。整个弹窗模块被设计成plugin，插入到脱离<code>&lt;div id='app' &gt;</code>的在
+              body标签下的<code>&lt;kt-popup-solt&gt;&lt;/kt-popup-solt&gt;</code>标签内。因此，其具有独立的层叠上下文和隔离事件冒泡的特性。</p>
+              <p>用户需要传入component以便渲染成页面</p>
+              <div class='code'>
+              // 在使用的过程中，用户可以直接调用全局的方法<br>
+              this.$ktPopup.show({<br>
+                component: component, // 组件<br>
+                opts:{                // 配置项<br>
+                  height: 0.5         // 高度占比，默认0.5<br>
+                  dismiss: true       // 点击背景隐藏，默认true
+                  class: ''           // 样式，默认''
+                }
+              })<br>
+              </div>
+              `
             },
             {
               title: 'kt-scroll-top组件',
-              subtitle: '您来到了知识的荒原！',
-              content: 'just a test'
+              subtitle: '全局返回置顶组件',
+              content: `<p>该组件被设计为全局的返回置顶组件。整个弹窗模块被设计成plugin，插入到脱离<code>&lt;div id='app' &gt;</code>的在
+              body标签下的<code>&lt;kt-popup-solt&gt;&lt;/kt-popup-solt&gt;</code>标签内。因此，其具有独立的层叠上下文和隔离事件冒泡的特性。</p>
+              <p>其默认3s后隐藏该置顶按钮。同时由于其特性，用户需要在切换页面、或者滑动sliders时，需要通知滚动组件隐藏。</p>
+              <p>该置顶组件，已被内嵌到kt-scroll组件中。</p>
+              <p>其中kt-sliders中已调用通知滚动组件隐藏接口。</p>
+              <div class='code'>
+              // kt-scroll-top组件的使用，绑定到move事件，其每一次滑动周期都将被重置<br>
+              this.$ktScrollTop.bindTouchmove($parent, $opts, event)<br>
+              this.$ktScrollTop.bindTouchend($parent, $opts, event)<br>
+              // kt-scroll-top组件，通知其隐藏.<br>
+              this.$EventBusDispatcer.dispatchs.scrollHide()<br>
+              // or <br>
+              this.$ktScrollTop.unbind()<br>
+              </div>
+              `
             }
           ]
         },
@@ -207,7 +260,35 @@ export default {
     onResult: function (type) {
       switch (type) {
         case 'alert':
-          this.$ktAlert.show('提示信息', '这是一个测试弹窗：你好，世界！', '好的')
+          this.$ktAlert.show({
+            title: '今日头条',
+            msg: 'Wang是基于Vue的开源的WebApp框架，敬请使用！',
+            // template: `<p>Wang是基于Vue的开源的webApp框架，作者在不断更新中····</p>
+            // <p>敬请期待！</p>`,
+            optsClass: 'my-alert-class',
+            btnText: '去吧，比卡丘!'
+          })
+          break
+        case 'confirm':
+          this.$ktConfirm.show({
+            title: '今日新闻',
+            msg: 'Wang是基于Vue的开源的WebApp框架，敬请使用！',
+            optsClass: 'my-confirm-class',
+            cancelText: '取消',
+            submitText: '确认'
+          })
+          break
+        case 'popup':
+          this.$ktPopup.show({
+            component: {
+              data () {
+                return {
+                  data: new Date()
+                }
+              },
+              template: '<div class="popup-test"> JUST A TEST  {{data}}</div>'
+            }
+          })
           break
         default:
           break

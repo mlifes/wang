@@ -8,10 +8,11 @@
     2020-07-19 18:45:19      wang.kt   初始化文档
     ----------------------------------------------------
 -->
-<div class="kt-alert mask" v-if="isShow">
+<div class="kt-alert mask" :class="optsClass" v-if="isShow">
     <div class="kt-alert-popup" >
         <div class="kt-alert-title">{{title}}</div>
-        <div class="kt-alert-content">{{msg}}</div>
+        <div class="kt-alert-content" v-if="!isTemplate">{{msg}}</div>
+        <div ref="ktAlertContentSolt" v-if="isTemplate"></div>
         <div class="kt-alert-btn" @click="hide">{{btnText}}</div>
     </div>
 </div>

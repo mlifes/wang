@@ -74,7 +74,7 @@ export default {
     },
     bindTouchend: function ($parent, $opts, event) {
       if (this.parents.isShow) {
-        this.hideAnim(1000)
+        this.hideAnim(3)
       }
     },
     showAnim: function () {
@@ -82,7 +82,6 @@ export default {
       this.parents.isShow = true
     },
     hideAnim: function (delay) {
-      console.log(333)
       const that = this
       if (that.parents.timeHandle) clearTimeout(that.parents.timeHandle)
       that.parents.timeHandle = setTimeout(() => {

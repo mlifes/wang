@@ -9,6 +9,7 @@
     ----------------------------------------------------
 -->
 <div class="kt-popup mask" v-if="isShow" @click="dismiss">
-    <div class="kt-popup-container" v-bind-html="template">
+    <div class="kt-popup-container">
+        <div ref="ktPopupSlot"></div>
     </div>
 </div>

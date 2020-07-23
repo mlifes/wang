@@ -8,6 +8,8 @@
   * 2020-07-19 18:46:24 wang.kt      初始化文档
   * ----------------------------------------------------
   * */
+import Vue from 'vue'
+
 export default {
   name: 'kt-popup',
   data () {
@@ -15,26 +17,19 @@ export default {
       isShow: false,
       myOpts: {
         height: 0.5,
-        dismiss: true
-      },
-      template: 'JUST A TEST'
+        dismiss: true,
+        class: ''
+      }
     }
   },
   methods: {
-    /**
-     * 显示接口
-     * @param {*} template html
-     * @param {*} scope 该html对应的作用域，提供一些方法
-     * @param {*} opts 配置
-     */
-    show (template, scope, opts) {
+    show ({ component, opts }) {
       this.reset()
-      this.template = template
-      scope.apply(this)
       for (const key in opts) {
         this.myOpts[key] = opts
       }
       this.isShow = true
+      this.buildPopupComponent(component)
     },
     hide () {
       this.reset()
@@ -44,15 +39,20 @@ export default {
       if (!this.myOpts.dismiss) {
         return
       }
-      this.reset()
       this.isShow = false
     },
     reset () {
-      this.template = ''
       this.myOpts = {
         height: 0.5,
-        dismiss: true
+        dismiss: true,
+        class: ''
       }
+    },
+    buildPopupComponent (component) {
+      const PopupComponent = Vue.extend(component)
+      this.$nextTick(function () {
+        new PopupComponent().$mount(this.$refs.ktPopupSlot)
+      })
     }
   }
 }

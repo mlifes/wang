@@ -9,4 +9,62 @@
   * 2020-07-19 18:45:50      wang.kt      初始化文档
   * ----------------------------------------------------
   * */
-.kt-confirm {}
+.kt-confirm {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  &.mask{
+    background: #00000070;
+  }
+  .kt-confirm-popup{
+    position: absolute;
+    height: 60vw;
+    width: 60vw;
+    top: 140vh;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    padding: 5px;
+
+    line-height: 32px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #9E9E9E;
+    animation: alertPopupAnim 1s ease forwards;
+
+    .kt-confirm-title,.kt-confirm-btns{
+      position: relative;
+      height: 32px;
+      text-align: center;
+    }
+    .kt-confirm-title{
+      border-bottom: 1px solid #c7c7c7;
+    }
+    .kt-confirm-content{
+      position: relative;
+      margin: 5px;
+      overflow-y: scroll;
+      height: calc(100% - 74px);
+      text-indent: 2em;
+      color: #9E9E9E;
+      font-size: 13px;
+    }
+    .kt-confirm-btns{
+      border-top: 1px solid #c7c7c7;
+      div{
+        height: 100%;
+        width: 50%;
+        float: left;
+        &.kt-confirm-cancel{
+
+        }
+        &.kt-confirm-submit{
+          color: #673AB7;
+        }
+      }
+    }
+  }
+}

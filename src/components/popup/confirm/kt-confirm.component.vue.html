@@ -8,6 +8,16 @@
     2020-07-19 18:45:50      wang.kt   初始化文档
     ----------------------------------------------------
 -->
-<div class="kt-confirm">
-    <!-- TODO: kt-confirm -->
+<div class="kt-confirm mask" :class="optsClass" v-if="isShow">
+    <div class="kt-confirm-popup" >
+        <div class="kt-confirm-title">{{title}}</div>
+        <div class="kt-confirm-content" >
+            <div v-if="!isTemplate">{{msg}}</div>
+            <div ref="ktConfirmContentSolt" v-if="isTemplate"></div>
+        </div>
+        <div class="kt-confirm-btns" >
+            <div class="kt-confirm-cancel" @click="cancel">{{cancelText}}</div>
+            <div class="kt-confirm-submit" @click="submit">{{submitText}}</div>
+        </div>
+    </div>
 </div>
