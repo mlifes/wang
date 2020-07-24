@@ -86,3 +86,41 @@ export function uuid (len, radix) {
   }
   return uuid.join('')
 }
+
+export const dynamicLoading = {
+  css: function (path, alwaysRefresh) {
+    if (!path || path.length === 0) {
+      throw new Error('argument "path" is required !')
+    }
+    var head = document.getElementsByTagName('head')[0]
+    var link = document.createElement('link')
+    if (alwaysRefresh) {
+      path = path + '?' + Math.random()
+    }
+    link.href = path
+    link.rel = 'stylesheet'
+    link.type = 'text/css'
+    head.appendChild(link)
+  },
+  js: function (path, alwaysRefresh, id, onload) {
+    if (!path || path.length === 0) {
+      throw new Error('argument "path" is required !')
+    }
+    var head = document.getElementsByTagName('head')[0]
+    var script = document.createElement('script')
+
+    if (id) {
+      script.setAttribute('id', id)
+    }
+
+    if (alwaysRefresh) {
+      path = path + '?' + Math.random()
+    }
+    script.src = path
+    script.type = 'text/javascript'
+    head.appendChild(script)
+    if (onload) {
+      script.onload = onload
+    }
+  }
+}

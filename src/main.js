@@ -10,9 +10,9 @@ import filters from './filters/index'
 // 插件
 import ktPopupsPlugins from './components/popup/ktPopups.plugin'
 
-import compatible from './utils/compatible.utils'
+import { attach } from './platform/index'
 
-compatible.compatible()
+attach()
 
 Vue.config.productionTip = false
 
