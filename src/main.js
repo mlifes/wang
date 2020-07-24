@@ -7,9 +7,12 @@ import './service/index'
 import components from './components/index'
 import directives from './directives/index'
 import filters from './filters/index'
-
 // 插件
 import ktPopupsPlugins from './components/popup/ktPopups.plugin'
+
+import compatible from './utils/compatible.utils'
+
+compatible.compatible()
 
 Vue.config.productionTip = false
 

@@ -114,7 +114,8 @@ export default {
         canLoadMore: false,
         showBackTop: true, // 显示返回顶部
         noData: false
-      }
+      },
+      touchStatus: 0 // 0表示没有重新计算、1表示重新计算高度: 在滑动过程中，只允许被触发一次，之后重置
     }
   },
   props: {
@@ -149,16 +150,17 @@ export default {
       return this.opts.canRefresh || this.opts.canLoadMore
     },
     isRefresh: function () {
-      return this.$el.scrollTop === 0
+      return this.$el.scrollTop <= 0
     },
     isLoadMore: function () {
-      return this.$el.scrollTop === (this.$el.scrollHeight - this.$el.clientHeight)
+      return this.$el.scrollTop >= (this.$el.scrollHeight - this.$el.clientHeight)
     },
     touchstart: function (event) {
       if (!this.canTouch()) {
         return
       }
       this.scrollBeginY = event.touches[0].clientY
+      this.touchStatus = 0
     },
     touchend: function (event) {
       if (this.opts.showBackTop) this.$ktScrollTop.bindTouchend(this)
@@ -185,31 +187,39 @@ export default {
       }
     },
     touchmove: function (event) {
+      console.log(111)
       if (this.opts.showBackTop) this.$ktScrollTop.bindTouchmove(this)
       if (!this.canTouch()) {
         return
       }
       /**
-       * 1、touchmove事件，当发现不是下拉刷新或者上拉加载的情况下，需要更新滚动开始位置
-       * 2、当是下拉刷新时，计算拉动距离，并transform展示logo
-       * 3、当是上拉加载时，计算拉动距离，并transform展示logo
-       * */
+     * 1、touchmove事件，当发现不是下拉刷新或者上拉加载的情况下，需要更新滚动开始位置
+     * 2、当是下拉刷新时，计算拉动距离，并transform展示logo
+     * 3、当是上拉加载时，计算拉动距离，并transform展示logo
+     * */
       if (!this.isRefresh() && !this.isLoadMore()) {
-        // 当滚动不是下拉或者上拉时，需要重置滚动开始位置
-        this.scrollBeginY = event.touches[0].clientY
+      // 当滚动不是下拉或者上拉时，需要重置滚动开始位置
+        console.log('refreshby:' + this.$el.scrollTop >= (this.$el.scrollHeight - this.$el.clientHeight))
+        console.log('===============')
+        console.log(this.$el.scrollTop + ': ' + this.$el.scrollHeight + ': ' + this.$el.clientHeight)
+        console.log('===============')
+        if (this.touchStatus === 0) {
+          this.touchStatus = 1
+          this.scrollBeginY = event.touches[0].clientY
+        }
         return
       }
 
       const dis = event.touches[0].clientY - this.scrollBeginY
 
       if (this.opts.canRefresh && this.isRefresh() && dis > 0) {
-        // 当下拉刷新时，执行
+      // 当下拉刷新时，执行
         this.myRefresh.dis = dis
         this.touchmoveRefresh(dis)
       }
-
+      console.log(222 + ':' + dis)
       if (this.opts.canLoadMore && this.isLoadMore() && dis < 0) {
-        // 当上拉加载时，执行
+      // 当上拉加载时，执行
         this.myLoadMore.dis = dis
         this.touchmoveLoadMore(dis)
       }
@@ -264,6 +274,7 @@ export default {
     },
     touchmoveLoadMore: function (dis) {
       dis = this.myLoadMore.computedHeight(-dis)
+      console.log(dis)
       this.$refs.loadmore.style = 'height:' + dis + 'px;'
       this.scrollBottom()
     },

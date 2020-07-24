@@ -9,6 +9,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'app',
   data () {
@@ -94,15 +95,18 @@ a {
   color: #666;
 }
 body {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
   margin: 0 auto;
   min-width: 320px;
   max-width: 640px;
-  height: 100%;
   font-size: 14px;
   font-family: -apple-system, Helvetica, sans-serif;
   line-height: 1.5;
   -webkit-text-size-adjust: 100% !important;
   text-size-adjust: 100% !important;
+  user-select: none;
 }
 input[type="text"],
 textarea {
@@ -110,23 +114,20 @@ textarea {
   -moz-appearance: none;
   appearance: none;
 }
-body {
-}
-.scrollToX,.scrollToY{
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
+// .scrollToX,.scrollToY{
+//   -webkit-overflow-scrolling: touch;
+//   -ms-overflow-style: none;
+//   overflow: -moz-scrollbars-none;
+//   &::-webkit-scrollbar {
+//     display: none;
+//   }
+// }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  height: 100vh;
 }
 
 .icon {

@@ -20,6 +20,7 @@ export default {
       currentIndex: 0,
       slideToX: false, // 是否沿着x轴方向滑动，仅当为true时滑动，并禁止y轴滑动，反之亦然
       xLimit: 0.1, // x轴滑动的百分比
+      len: 0,
       myOpts: {
         auto: false,
         distance: 0.2,
@@ -57,14 +58,20 @@ export default {
         this.myOpts[key] = this.opts[key]
       }
       this.size.width = this.$el.clientWidth
-      const len = this.$children.length
-      for (let i = 0; i < len; i++) {
+      this.initSlideStyle()
+    },
+    initSlideStyle: function () {
+      if (this.len > 0) {
+        return
+      }
+      this.len = this.$children.length
+      for (let i = 0; i < this.len; i++) {
         const slide = this.$children[i].$el
         slide.style = 'width:' + this.size.width + 'px'
         this.pages.push(i)
       }
-      this.baseStyle = 'height:100%;width:' + (this.size.width * len) + 'px;'
-      this.pageStyle = 'width:' + (25 * len) + 'px'
+      this.baseStyle = 'height:100%;width:' + (this.size.width * this.len) + 'px;'
+      this.pageStyle = 'width:' + (25 * this.len) + 'px'
     },
     /**
      * 滚动到某页面
@@ -84,6 +91,7 @@ export default {
       this.slide(-this.currentIndex * this.size.width, style)
     },
     slide: function (dis, style) {
+      this.initSlideStyle()
       let transform = 'transform:translateX(' + dis + 'px);'
       if (style) {
         transform += style

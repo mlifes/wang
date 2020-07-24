@@ -10,7 +10,7 @@
   * ----------------------------------------------------
   * */
 import { throttle } from '../../../utils/tool.utils'
-import def from '../../../assets/components/unit/img/def.png'
+import def from '../../../assets/img/components/unit/img/def.png'
 
 export default {
   name: 'kt-img',

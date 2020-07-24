@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wang</title>
+  <style>
+    .mobile{
+      position: relative;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+    }
+    .mobile_container{
+      position: absolute;
+    }
+    .mobile_bg{
+      position: relative;
+      width: 400px;
+    }
+    .mobile_iframe{
+      position: absolute;
+      top: 123px;
+      left: 24px;
+      height: 594px;
+      width: 350px;
+    }
+  </style>
+  <script>
+    if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+				location.href = './index.html'
+			}
+  </script>
+</head>
+<body>
+  <div class="mobile">
+    <div class="mobile_container">
+      <img class="mobile_bg" src="./iphone.png" alt="">
+      <iframe class="mobile_iframe" src="./index.html" frameborder="0"></iframe>
+    </div>
+  </div>
+</body>
+</html>

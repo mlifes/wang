@@ -11,6 +11,9 @@
 .kt-slides {
   position: relative;
   overflow: hidden;
+  .container{
+    min-width: 100%;
+  }
   .page{
     position: absolute;
     height: 10px;
