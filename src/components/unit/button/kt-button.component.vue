@@ -12,4 +12,3 @@
   -->
 <template src="./kt-button.component.vue.html" lang="html"></template>
 <script src="./kt-button.component.vue.js" lang="js"></script>
-<style src="./kt-button.component.vue.scss" lang="scss"></style>

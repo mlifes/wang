@@ -12,4 +12,3 @@
   -->
 <template src="./kt-checkbox.component.vue.html" lang="html"></template>
 <script src="./kt-checkbox.component.vue.js" lang="js"></script>
-<style src="./kt-checkbox.component.vue.scss" lang="scss"></style>

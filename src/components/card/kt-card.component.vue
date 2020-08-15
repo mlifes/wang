@@ -12,4 +12,3 @@
   -->
 <template src="./kt-card.component.vue.html" lang="html"></template>
 <script src="./kt-card.component.vue.js" lang="js"></script>
-<style src="./kt-card.component.vue.scss" lang="scss"></style>

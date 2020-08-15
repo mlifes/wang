@@ -1,13 +1,4 @@
-/**
-  * @author wang.kt
-  * @date 2020-06-10 08:38:02
-  * @version 1.0
-  * @description 功能描述
-  * ----------------------------------------------------
-  * date          author         desc
-  * 2020-06-10 08:38:02      wang.kt      初始化文档
-  * ----------------------------------------------------
-  * */
+
 .kt-toolbar {
   position: relative;
   height: 100%;
@@ -33,5 +24,22 @@
     width: 20vw;
     top: 0;
     right: 0;
+  }
+}
+
+.kt-back {
+  &:before,&:after{
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 10px;
+    height: 30%;
+    width: 2px;
+    background: #607D8B;
+    transform: rotateZ(45deg);
+  }
+  &:after{
+    top: 45%;
+    transform: rotateZ(-40deg);
   }
 }

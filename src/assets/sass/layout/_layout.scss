@@ -1,0 +1,37 @@
+// 布局scss
+@import "../variable";
+// kt-app
+.kt-app {
+  position: absolute;
+  height: 100%;
+  background-color: white;
+  .kt-app-container{
+    position: relative;
+    height: 100%;
+    width: 100vw;
+    max-width: 640px;
+  }
+  .kt-header {
+    height: $wang-header;
+    line-height: $wang-header;
+    background: white;
+  }
+  .kt-footer {
+    height: $wang-footer;
+    line-height: $wang-footer;
+    background: white;
+  }
+  .kt-content {
+    height: 100%;
+    background: whitesmoke;
+    &.has-header.has-footer {
+      height: calc(100% - #{$wang-header + $wang-footer});
+    }
+    &.has-header {
+      height: calc(100% - #{$wang-header});
+    }
+    &.has-footer {
+      height: calc(100% - #{$wang-header});
+    }
+  }
+}

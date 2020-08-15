@@ -1,0 +1,53 @@
+// 通用类型混合特性，将特殊样式模块添加此处，以统一修改
+
+// 通用类型圆角
+@mixin rounded-corners(
+  $corners-radius:5px
+  ) {
+  border-radius: $corners-radius;
+}
+
+// 通用类型box-shadow
+@mixin box-shadow (
+  $corners-radius:5px,
+  $box-shadow-color:#9E9E9E,
+  $box-shadow-range: 3px
+){
+  @include rounded-corners($corners-radius);
+  box-shadow: 0 0 $box-shadow-range $box-shadow-color;
+}
+
+// 通用类型下划线
+@mixin underline(
+  $underline-size:1px,
+  $underline-color:#c7c7c7
+) {
+  border-bottom: $underline-size solid $underline-color;
+}
+
+// 通用类型下划线
+@mixin upline(
+  $underline-size:1px,
+  $underline-color:#c7c7c7
+) {
+  border-up: $underline-size solid $underline-color;
+}
+
+
+
+@mixin link-colors(
+  $normal:black,
+  $hover:red,
+  $active:blue,
+  $visited:black) {
+  color: $normal;
+  &:hover{
+    color: $hover;
+  }
+  &:active{
+    color: $active;
+  }
+  &:visited{
+    color: $visited;
+  }
+}

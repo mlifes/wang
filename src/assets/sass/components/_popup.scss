@@ -1,0 +1,189 @@
+@import "../variable";
+@import "../mixin";
+
+// 返回置顶大小
+$wang-back-top-size:48px;
+
+// 上下抖动动画
+@keyframes popupAnimTingle{
+  0% {
+    top: 140vh;
+  }
+  80%{
+    top: -15px;
+  }
+  85%{
+    top: 5px;
+  }
+  89%{
+    top: -10px;
+  }
+  94%{
+    top: 0;
+  }
+  97%{
+    top: -5px;
+  }
+  100%{
+    top: 0;
+  }
+}
+
+// 平滑过度
+@keyframes popupAnimSmooth{
+  0%{
+    bottom: -100%;
+  }
+  100%{
+    bottom: 0%;
+  }
+}
+
+@mixin popup-warpper {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  &.mask{
+    background: $wang-mask-color;
+  }
+}
+
+@mixin popup-container {
+  position: absolute;
+  height: 60vw;
+  width: 60vw;
+  top: 140vh;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  padding: 5px;
+
+  line-height: $wang-title-height;
+  background: white;
+  animation: popupAnimTingle 1s ease forwards;
+  @include box-shadow;
+}
+
+
+@mixin popup-content {
+  font-size: $wang-font-min;
+  text-indent: 2em;
+  color: #9E9E9E;
+}
+
+@mixin popup-title {
+  position: relative;
+  height: $wang-title-height;
+  text-align: center;
+}
+
+
+.kt-alert{
+ 
+  @include popup-warpper;
+
+  .kt-alert-popup{
+    
+    @include popup-container;
+
+    .kt-alert-title,.kt-alert-btn{
+      @include popup-title;
+    }
+    .kt-alert-title{
+      @include underline;
+    }
+    .kt-alert-content{
+      position: relative;
+      margin: 5px;
+      overflow-y: scroll;
+      height: calc(100% - 74px);
+      @include popup-content;
+    }
+    .kt-alert-btn{
+      background: blueviolet;
+      color: white;
+      @include rounded-corners;
+    }
+  }
+}
+
+.kt-confirm {
+
+  @include popup-warpper;
+
+  .kt-confirm-popup{
+    
+    @include popup-container;
+
+    .kt-confirm-title,.kt-confirm-btns{
+      
+      @include popup-title;
+    }
+    .kt-confirm-title{
+      @include underline;
+    }
+    .kt-confirm-content{
+      position: relative;
+      margin: 5px;
+      overflow-y: scroll;
+      height: calc(100% - 74px);
+      @include popup-content;
+    }
+    .kt-confirm-btns{
+      @include upline;
+      div{
+        height: 100%;
+        width: 50%;
+        float: left;
+        // &.kt-confirm-cancel{
+        // TODO: somthing todo
+        // }
+        &.kt-confirm-submit{
+          color: #673AB7;
+        }
+      }
+    }
+  }
+}
+
+
+.kt-popup {
+  
+  @include popup-warpper;
+  .kt-popup-container{
+    position: absolute;
+    height: 50vh;
+    width: 100%;
+    bottom: 0;
+    background: white;
+    animation: popupAnimSmooth 1s ease forwards;
+  }
+}
+.kt-scroll-top {
+  &.scrollTop{
+    position: fixed;
+    height: $wang-back-top-size;
+    width: $wang-back-top-size;
+    line-height: $wang-back-top-size;
+    font-size: $wang-back-top-size / 2;
+    text-align: center;
+    opacity: 0;
+    color: white;
+    border-radius: 50%;
+    background: #dadada;
+    box-shadow: 0 0 3px #9E9E9E;
+    &.show{
+      display: block;
+    }
+    &.hide{
+      display: none;
+    }
+    &.autohide{
+      display: none;
+      transition: display 3s;
+    }
+  }
+}

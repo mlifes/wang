@@ -12,4 +12,3 @@
   -->
 <template src="./kt-select.component.vue.html" lang="html"></template>
 <script src="./kt-select.component.vue.js" lang="js"></script>
-<style src="./kt-select.component.vue.scss" lang="scss"></style>

@@ -12,4 +12,3 @@
   -->
 <template src="./kt-slides.component.vue.html" lang="html"></template>
 <script src="./kt-slides.component.vue.js" lang="js"></script>
-<style src="./kt-slides.component.vue.scss" lang="scss"></style>

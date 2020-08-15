@@ -1,0 +1,39 @@
+// 定义全局组件变量，用户可以在此处修改变量
+// 此处定义为默认定义，用户可以在自己的scss文件中重新定义
+
+
+$wang-theme:#009688 !default;
+$wang-theme-bg:#cccccc !default;
+
+
+// 定义布局
+$wang-header: 48px;
+$wang-footer: 64px;
+
+$wang-corners: 5px;
+
+$wang-title-height: 32px;
+
+
+//  定义字体和修饰
+$wang-font-size:14px !default;
+$wang-font-min-size:12px !default;
+$wang-font-color:#033d5a !default;
+$wang-font-family:Avenir, Helvetica, Arial, sans-serif !default;
+
+//  定义文本大小
+$wang-font-m1:3rem !default;
+$wang-font-h2:2.5rem !default;
+$wang-font-h3:2rem !default;
+$wang-font-h4:1.5rem !default;
+
+$wang-font-title:1.2rem !default;
+$wang-font-content: 1rem !default;
+
+$wang-font-min:$wang-font-min-size !default;
+
+// 定义通用样式
+$wang-mask-color:#00000070;
+
+
+ 

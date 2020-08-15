@@ -1,0 +1,51 @@
+// 添加重置样式的css代码
+@import 'variable';
+
+* { 
+  -webkit-tap-highlight-color: transparent; 
+  outline: 0; 
+  margin: 0; 
+  padding: 0; 
+  vertical-align: baseline; 
+}
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { 
+  margin: 0; 
+  padding: 0; 
+  vertical-align: baseline; 
+  overflow: hidden;
+}
+img { 
+  border: 0 none; 
+  vertical-align: top; 
+}
+i, em { 
+  font-style: normal; 
+}
+ol, ul { 
+  list-style: none; 
+}
+input, select, button, h1, h2, h3, h4, h5, h6 { 
+  font-size: 100%; 
+  font-family: inherit; 
+}
+table { 
+  border-collapse: collapse; 
+  border-spacing: 0; 
+}
+a { 
+  text-decoration: none; 
+  color: #666; 
+}
+body {
+  margin: 0 auto; 
+  min-width: 320px; 
+  max-width: 640px; 
+  height: 100%; 
+  font-size: $wang-font-size; 
+  font-family: -apple-system,Helvetica,sans-serif; 
+  line-height: 1.5; 
+  color: $wang-font-color; 
+  text-size-adjust: 100% !important; }
+input[type="text"], textarea {
+  appearance: none; 
+}

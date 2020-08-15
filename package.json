@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "vue-g": "node scripts/generate",
-    "report": "vue-cli-service build --report"
+    "report": "vue-cli-service build --report",
+    "sass-c": "sass src/assets/sass/_index.scss:src/assets/css/style.css --style expanded"
   },
   "dependencies": {
     "core-js": "^3.6.5",

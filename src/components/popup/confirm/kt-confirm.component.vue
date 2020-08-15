@@ -12,4 +12,3 @@
   -->
 <template src="./kt-confirm.component.vue.html" lang="html"></template>
 <script src="./kt-confirm.component.vue.js" lang="js"></script>
-<style src="./kt-confirm.component.vue.scss" lang="scss"></style>

@@ -1,14 +1,7 @@
-@charset "UTF-8";
-/**
-  * @author wang.kt
-  * @date 2020-07-11 09:58:59
-  * @version 1.0
-  * @description 功能描述
-  * ----------------------------------------------------
-  * date          author         desc
-  * 2020-07-11 09:58:59      wang.kt      初始化文档
-  * ----------------------------------------------------
-  * */
+// 滚动相关
+@import "../variable";
+
+$wang-scroll-height: 32px;
 
 .kt-scroll {
   position: relative;
@@ -22,7 +15,7 @@
   .kt-scroll-refresh,.kt-scroll-loadmore{
     position: relative;
     height: 0;
-    font-size: 12px;
+    font-size: $wang-font-min;
     overflow: hidden;
     background: #f3f3f3;
     color: #9E9E9E;
@@ -30,8 +23,8 @@
   .kt-scroll-refresh{
     .refresh-icon{
       position: absolute;
-      bottom: 32px;
-      height: 12px;
+      bottom: $wang-scroll-height;
+      height: $wang-font-min;
       width: 100%;
       .icon-wang{
         width: 100%;
@@ -51,11 +44,20 @@
       position: absolute;
       bottom: 0;
       width: 100vw;
-      height: 32px;
-      line-height: 32px;
+      height: $wang-scroll-height;
+      line-height: $wang-scroll-height;
     }
   }
   .kt-scroll-loadmore{
-    line-height: 32px;
+    line-height: $wang-scroll-height;
+  }
+}
+
+.scrollToX,.scrollToY{
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -12,4 +12,3 @@
   -->
 <template src="./kt-scroll-top.component.vue.html" lang="html"></template>
 <script src="./kt-scroll-top.component.vue.js" lang="js"></script>
-<style src="./kt-scroll-top.component.vue.scss" lang="scss"></style>
