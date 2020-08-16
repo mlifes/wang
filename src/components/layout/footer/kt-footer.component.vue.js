@@ -12,7 +12,6 @@ export default {
   name: 'kt-footer',
   mounted () {
     this.init()
-    console.log('footer')
   },
   methods: {
     init: function () {

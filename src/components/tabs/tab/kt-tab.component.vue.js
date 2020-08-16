@@ -20,7 +20,6 @@ export default {
   },
   methods: {
     refreshTabs: function () {
-      console.log('tab')
       // 此处添加的目的时刷新父tabs的样式
       if (this.$parent.$options._componentTag === 'kt-tabs' && this.$parent.hasInit) {
         this.$parent.init()

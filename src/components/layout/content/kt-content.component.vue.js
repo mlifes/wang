@@ -30,7 +30,6 @@ export default {
   },
   mounted () {
     this.init()
-    console.log('content')
   },
   methods: {
     init: function () {

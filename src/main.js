@@ -23,7 +23,6 @@ for (const key in components) {
 
 // 遍历指令
 for (const key in directives) {
-  console.log(key)
   Vue.directive(key, directives[key])
 }
 

@@ -132,10 +132,8 @@ export default {
   },
   mounted () {
     this.init()
-    console.log('scroll')
   },
   destroyed () {
-    console.log('destroyed')
     if (this.opts.showBackTop) this.$ktScrollTop.unbind()
   },
   methods: {
@@ -187,7 +185,6 @@ export default {
       }
     },
     touchmove: function (event) {
-      console.log(111)
       if (this.opts.showBackTop) this.$ktScrollTop.bindTouchmove(this)
       if (!this.canTouch()) {
         return
@@ -199,10 +196,6 @@ export default {
      * */
       if (!this.isRefresh() && !this.isLoadMore()) {
       // 当滚动不是下拉或者上拉时，需要重置滚动开始位置
-        console.log('refreshby:' + this.$el.scrollTop >= (this.$el.scrollHeight - this.$el.clientHeight))
-        console.log('===============')
-        console.log(this.$el.scrollTop + ': ' + this.$el.scrollHeight + ': ' + this.$el.clientHeight)
-        console.log('===============')
         if (this.touchStatus === 0) {
           this.touchStatus = 1
           this.scrollBeginY = event.touches[0].clientY
@@ -217,7 +210,6 @@ export default {
         this.myRefresh.dis = dis
         this.touchmoveRefresh(dis)
       }
-      console.log(222 + ':' + dis)
       if (this.opts.canLoadMore && this.isLoadMore() && dis < 0) {
       // 当上拉加载时，执行
         this.myLoadMore.dis = dis
@@ -274,7 +266,6 @@ export default {
     },
     touchmoveLoadMore: function (dis) {
       dis = this.myLoadMore.computedHeight(-dis)
-      console.log(dis)
       this.$refs.loadmore.style = 'height:' + dis + 'px;'
       this.scrollBottom()
     },

@@ -7,7 +7,6 @@ export function rubberCompatible () {
   })
   document.body.addEventListener('touchmove', function (e) {
     endY = e.touches[0].pageY
-    console.log('endY:' + endY)
     // 手指下滑，页面到达顶端不能继续下滑
     if (endY > startY && document.body.scrollTop < 0) {
       e.preventDefault()

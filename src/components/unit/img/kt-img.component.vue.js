@@ -78,7 +78,6 @@ export default {
         if ((dx > 0 && dx < window.innerWidth) ||
           (dy > 0 && dy < window.innerHeight)) {
           // 解除绑定
-          console.log('unbind')
           that.$parent.$el.removeEventListener('scroll', that.lazyHandle)
           that.ktImg = that.src
           that.$forceUpdate()
