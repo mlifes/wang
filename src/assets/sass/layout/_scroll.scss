@@ -17,8 +17,9 @@ $wang-scroll-height: 32px;
     height: 0;
     font-size: $wang-font-min;
     overflow: hidden;
-    background: #f3f3f3;
-    color: #9E9E9E;
+    
+    @include font-light-color;
+    @include theme-bg-secondary;
   }
   .kt-scroll-refresh{
     .refresh-icon{

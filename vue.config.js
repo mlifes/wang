@@ -13,7 +13,15 @@ module.exports = {
   // 默认情况下，生成的静态资源在它们的文件名中包含了 hash 以便更好的控制缓存。
   // 然而，这也要求 index 的 HTML 是被 Vue CLI 自动生成的。如果你无法使用 Vue CLI 生成的 index HTML，
   // 你可以通过将这个选项设为 false 来关闭文件名哈希。
-  filenameHashing: true,
+  filenameHashing: false,
+  chainWebpack: config => {
+    // 修改内置的打包限制，从4k到10k
+    config.module
+      .rule('images')
+      .use('url-loader')
+      .loader('url-loader')
+      .tap(options => Object.assign(options, { limit: 10240 }))
+  },
   // 在 multi-page 模式下构建应用。每个“page”应该有一个对应的 JavaScript 入口文件
   //   pages: {
   //     index: {

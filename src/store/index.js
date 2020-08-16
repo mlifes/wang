@@ -7,7 +7,9 @@ import getters from './getter'
 Vue.use(Vuex)
 
 const state = {
-  app: {},
+  app: {
+    theme: 'light'
+  },
   user: {},
   home: []
 }

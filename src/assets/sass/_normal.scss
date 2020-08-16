@@ -1,0 +1,6 @@
+// 设置通用类型的样式
+@import 'variable';
+
+.active{
+  @include theme-color;
+}

@@ -6,4 +6,3 @@
 -->
 <template src="./tabs.vue.html" lang="html"></template>
 <script src="./tabs.vue.js" lang="js"></script>
-<style src="./tabs.vue.scss" lang="scss"></style>

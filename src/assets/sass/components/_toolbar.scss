@@ -36,6 +36,7 @@
     height: 30%;
     width: 2px;
     background: #607D8B;
+    @include theme-data($props:background,$key:font-color);
     transform: rotateZ(45deg);
   }
   &:after{

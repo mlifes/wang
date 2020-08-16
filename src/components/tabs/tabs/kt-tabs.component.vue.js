@@ -96,7 +96,7 @@ export default {
 
       const ratio = parseInt((1 - this.opts.ratio) / 2 * 100)
 
-      this.signBar = 'background: linear-gradient(to right,white ' + ratio + '%,' + this.opts.color + ' ' + ratio + '%,' + this.opts.color + ' ' + (100 - ratio) + '%,white ' + (100 - ratio) + '% );'
+      this.signBar = 'background: linear-gradient(to right,transparent ' + ratio + '%,' + this.opts.color + ' ' + ratio + '%,' + this.opts.color + ' ' + (100 - ratio) + '%,transparent ' + (100 - ratio) + '% );'
 
       let style = 'height:' + this.opts.height + 'px;width:' + this.cw + 'px;'
 

@@ -2,10 +2,6 @@
 // 此处定义为默认定义，用户可以在自己的scss文件中重新定义
 
 
-$wang-theme:#009688 !default;
-$wang-theme-bg:#cccccc !default;
-
-
 // 定义布局
 $wang-header: 48px;
 $wang-footer: 64px;
@@ -18,7 +14,6 @@ $wang-title-height: 32px;
 //  定义字体和修饰
 $wang-font-size:14px !default;
 $wang-font-min-size:12px !default;
-$wang-font-color:#033d5a !default;
 $wang-font-family:Avenir, Helvetica, Arial, sans-serif !default;
 
 //  定义文本大小
@@ -32,8 +27,158 @@ $wang-font-content: 1rem !default;
 
 $wang-font-min:$wang-font-min-size !default;
 
-// 定义通用样式
-$wang-mask-color:#00000070;
+
+// 亮色
+$theme-light:(
+  theme-color:#059587, // 主色调
+  theme-clear-color:white, // 主色调背景
+
+  theme-bg:whitesmoke, // 背景颜色
+
+  theme-bg-secondary:#dadada, // 次级背景颜色 
+
+  font-color:#062738, //默认字体颜色 
+  font-light-color:#4b5052, //浅色字体颜色
+
+  mask:#00000070 // 遮罩层
+);
 
 
+// 暗色
+$theme-dark:(
+  theme-color: #059587, // 主色调
+  theme-clear-color: #000000d9,  //主色调背景
+
+  theme-bg:#2d3534, // 背景颜色
+
+  theme-bg-secondary:#424c4b, // 次级背景颜色
+
+  font-color: white, // 默认字体颜色
+  font-light-color: #a9b7bd, // 浅色字体颜色
+  
+  mask:#bbbbbb70 // 遮罩层
+);
+
+
+// 暖色
+$theme-warm:(
+  theme-color: #bb7002, // 主色调
+  theme-clear-color: white,  //主色调背景
+
+  theme-bg:whitesmoke, // 背景颜色
+
+  theme-bg-secondary:#dadada, // 次级背景颜色
+
+  font-color:#062738, //默认字体颜色 
+  font-light-color:#4b5052, //浅色字体颜色
+
+  mask:#00000070 // 遮罩层
+);
+
+
+// 冷色
+$theme-cool:(
+  theme-color: #4c00d4, // 主色调
+  theme-clear-color: white,  //主色调背景
+
+  theme-bg:whitesmoke, // 背景颜色
+
+  theme-bg-secondary:#dadada, // 次级背景颜色
+
+  font-color:#062738, //默认字体颜色 
+  font-light-color:#4b5052, //浅色字体颜色
+
+  mask:#00000070 // 遮罩层
+);
+
+
+$themes : (
+  light: $theme-light,
+  dark: $theme-dark,
+  warm: $theme-warm,
+  cool: $theme-cool
+);
+
+@mixin theme-data($props,$key) {
+  @each $name, $theme in $themes {
+    body[data-theme = '#{$name}'] & {
+      #{$props}:map-get($map: $theme, $key: $key);
+    }
+  }
+}
+
+@mixin theme-nomal {
+  @each $name, $theme in $themes {
+    body[data-theme = '#{$name}'] & {
+      color: map-get($map: $theme, $key: font-color);
+      background-color: map-get($map: $theme, $key: theme-clear-color);
+    }
+  }
+}
+
+@mixin theme-light {
+  @each $name,$theme in $themes {
+    body[data-theme = '#{$name}'] & {
+      color: map-get($map: $theme, $key: font-light-color);
+      background-color: map-get($map: $theme, $key: theme-clear-color);
+    }
+  }
+}
+
+@mixin theme-color {
+  @each $name,$theme in $themes {
+    body[data-theme = '#{$name}'] & {
+      color: map-get($map: $theme, $key: theme-color);
+    }
+  }
+}
+
+
+@mixin theme-clear {
+  @each $name,$theme in $themes {
+    body[data-theme = '#{$name}'] & {
+      background-color: map-get($map: $theme, $key: theme-clear-color);
+    }
+  }
+}
+
+@mixin theme-bg {
+  @each $name,$theme in $themes {
+    body[data-theme = '#{$name}'] & {
+      background-color: map-get($map: $theme, $key: theme-bg);
+    }
+  }
+}
+
+@mixin theme-bg-secondary {
+  @each $name,$theme in $themes {
+    body[data-theme = '#{$name}'] & {
+      background-color: map-get($map: $theme, $key: theme-bg-secondary);
+    }
+  }
+}
+
+@mixin theme-mask {
+  @each $name,$theme in $themes {
+    body[data-theme = '#{$name}'] & {
+      background-color: map-get($map: $theme, $key: mask);
+    }
+  }
+}
+
+@mixin font-color {
+  @each $name,$theme in $themes {
+    body[data-theme = '#{$name}'] & {
+      color: map-get($map: $theme, $key: font-color);
+    }
+  }
+}
+
+@mixin font-light-color {
+  @each $name,$theme in $themes {
+    body[data-theme = '#{$name}'] & {
+      color: map-get($map: $theme, $key: font-light-color);
+    }
+  }
+}
  

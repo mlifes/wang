@@ -46,7 +46,7 @@ $wang-back-top-size:48px;
   top: 0;
   left: 0;
   &.mask{
-    background: $wang-mask-color;
+    @include theme-mask;
   }
 }
 
@@ -62,7 +62,9 @@ $wang-back-top-size:48px;
   padding: 5px;
 
   line-height: $wang-title-height;
-  background: white;
+
+  @include theme-clear;
+
   animation: popupAnimTingle 1s ease forwards;
   @include box-shadow;
 }
@@ -94,6 +96,7 @@ $wang-back-top-size:48px;
     }
     .kt-alert-title{
       @include underline;
+      @include font-color;
     }
     .kt-alert-content{
       position: relative;
@@ -103,8 +106,8 @@ $wang-back-top-size:48px;
       @include popup-content;
     }
     .kt-alert-btn{
-      background: blueviolet;
       color: white;
+      @include theme-data($props:background,$key:theme-color);
       @include rounded-corners;
     }
   }
@@ -142,7 +145,7 @@ $wang-back-top-size:48px;
         // TODO: somthing todo
         // }
         &.kt-confirm-submit{
-          color: #673AB7;
+          @include theme-color;
         }
       }
     }
@@ -158,7 +161,7 @@ $wang-back-top-size:48px;
     height: 50vh;
     width: 100%;
     bottom: 0;
-    background: white;
+    @include theme-nomal;
     animation: popupAnimSmooth 1s ease forwards;
   }
 }
@@ -167,13 +170,17 @@ $wang-back-top-size:48px;
     position: fixed;
     height: $wang-back-top-size;
     width: $wang-back-top-size;
+    
+    border-radius: 50%;
+
     line-height: $wang-back-top-size;
     font-size: $wang-back-top-size / 2;
     text-align: center;
     opacity: 0;
     color: white;
-    border-radius: 50%;
-    background: #dadada;
+    
+    @include theme-data($props:background-color,$key:theme-color);
+
     box-shadow: 0 0 3px #9E9E9E;
     &.show{
       display: block;

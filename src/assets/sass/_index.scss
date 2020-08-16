@@ -1,11 +1,13 @@
 @import "variable";
 @import "reset";
+@import "normal";
 
 #app {
   font-family: $wang-font-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  @include theme-nomal;
 }
 
 @import "layout/layout";
@@ -17,5 +19,5 @@
 @import "components/animation";
 @import "components/tabs";
 @import "components/toolbar";
-@import "unit/icon";
-@import "unit/img";
+@import "components/unit/icon";
+@import "components/unit/img";
