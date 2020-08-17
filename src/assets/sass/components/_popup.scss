@@ -80,6 +80,7 @@ $wang-back-top-size:48px;
   position: relative;
   height: $wang-title-height;
   text-align: center;
+  @include font-color;
 }
 
 
